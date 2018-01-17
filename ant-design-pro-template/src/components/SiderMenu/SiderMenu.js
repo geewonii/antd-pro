@@ -208,7 +208,7 @@ export default class SiderMenu extends PureComponent {
         </div>
         <Menu
           key="Menu"
-          theme="dark"
+          // theme="dark"
           mode="inline"
           {...menuProps}
           onOpenChange={this.handleOpenChange}
