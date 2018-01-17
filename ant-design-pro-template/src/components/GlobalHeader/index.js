@@ -54,7 +54,7 @@ export default class GlobalHeader extends PureComponent {
   }
   render() {
     const {
-      currentUser, fetchingNotices, isMobile, logo,
+      currentUser, collapsed, fetchingNotices, isMobile, logo,
       onNoticeVisibleChange, onMenuClick, onNoticeClear,
     } = this.props;
     const menu = (
@@ -79,11 +79,13 @@ export default class GlobalHeader extends PureComponent {
             <Divider type="vertical" key="line" />,
           ]
         )}
-        {/* <Icon
-          className={styles.trigger}
-          type={collapsed ? 'menu-unfold' : 'menu-fold'}
-          onClick={this.toggle}
-        /> */}
+        {isMobile && (
+          <Icon
+            className={styles.trigger}
+            type={collapsed ? 'menu-unfold' : 'menu-fold'}
+            onClick={this.toggle}
+          />
+        )}
         <span className={styles.phone}>客服热线： 400-837-2223</span>
         <div className={styles.right}>
           <HeaderSearch
