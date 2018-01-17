@@ -1,7 +1,7 @@
 import 'rc-drawer-menu/assets/index.css';
 import React from 'react';
 import DrawerMenu from 'rc-drawer-menu';
-import SiderMenu from './SiderMenu';
+import HeaderMenu from './HeaderMenu';
 
 export default props => (
   props.isMobile ? (
@@ -13,7 +13,7 @@ export default props => (
       onMaskClick={() => { props.onCollapse(true); }}
       width="256px"
     >
-      <SiderMenu {...props} collapsed={props.isMobile ? false : props.collapsed} />
+      <HeaderMenu {...props} collapsed={props.isMobile ? false : props.collapsed} />
     </DrawerMenu>
-  ) : <SiderMenu {...props} />
+  ) : <HeaderMenu {...props} />
 );

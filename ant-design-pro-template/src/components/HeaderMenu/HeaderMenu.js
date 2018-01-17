@@ -3,7 +3,7 @@ import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'dva/router';
 import styles from './index.less';
 
-const { Sider } = Layout;
+const { Header, Sider } = Layout;
 const { SubMenu } = Menu;
 
 // Allow menu.js config icon as string or ReactNode
@@ -20,7 +20,7 @@ const getIcon = (icon) => {
   return icon;
 };
 
-export default class SiderMenu extends PureComponent {
+export default class HeaderMenu extends PureComponent {
   constructor(props) {
     super(props);
     this.menus = props.menuData;
@@ -80,7 +80,7 @@ export default class SiderMenu extends PureComponent {
   /**
   * 判断是否是http链接.返回 Link 或 a
   * Judge whether it is http link.return a or Link
-  * @memberof SiderMenu
+  * @memberof HeaderMenu
   */
   getMenuItemPath = (item) => {
     const itemPath = this.conversionPath(item.path);
@@ -112,14 +112,7 @@ export default class SiderMenu extends PureComponent {
     if (item.children && item.children.some(child => child.name)) {
       return (
         <SubMenu
-          title={
-            item.icon ? (
-              <span>
-                {getIcon(item.icon)}
-                <span>{item.name}</span>
-              </span>
-            ) : item.name
-            }
+          title={item.name}
           key={item.key || item.path}
         >
           {this.getNavMenuItems(item.children)}
@@ -135,7 +128,7 @@ export default class SiderMenu extends PureComponent {
   }
   /**
   * 获得菜单子节点
-  * @memberof SiderMenu
+  * @memberof HeaderMenu
   */
   getNavMenuItems = (menusData) => {
     if (!menusData) {
@@ -190,34 +183,52 @@ export default class SiderMenu extends PureComponent {
     if (!selectedKeys.length) {
       selectedKeys = [openKeys[openKeys.length - 1]];
     }
-    return (
-      <Sider
-        trigger={null}
-        collapsible
-        collapsed={collapsed}
-        breakpoint="md"
-        onCollapse={onCollapse}
-        width={256}
-        className={styles.sider}
-      >
-        <div className={styles.logo} key="logo">
-          <Link to="/">
-            <img src={logo} alt="logo" />
-            <h1>Ant Design Pro</h1>
-          </Link>
-        </div>
-        <Menu
-          key="Menu"
-          // theme="dark"
-          mode="inline"
-          {...menuProps}
-          onOpenChange={this.handleOpenChange}
-          selectedKeys={selectedKeys}
-          style={{ padding: '16px 0', width: '100%' }}
+    if (this.props.isMobile) {
+      return (
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          breakpoint="md"
+          onCollapse={onCollapse}
+          width={256}
+          className={styles.sider}
         >
-          {this.getNavMenuItems(this.menus)}
-        </Menu>
-      </Sider>
-    );
+          <div className={styles.logo} key="logo">
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
+          </div>
+          <Menu
+            key="Menu"
+            mode="inline"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={selectedKeys}
+            style={{ padding: '16px 0', width: '100%' }}
+          >
+            {this.getNavMenuItems(this.menus)}
+          </Menu>
+        </Sider>
+      );
+    } else {
+      return (
+        <Header className={styles.Header}>
+          <div className={styles.logo} key="logo">
+            <Link to="/"><img src={logo} alt="logo" /></Link>
+          </div>
+          <Menu
+            key="Menu"
+            mode="horizontal"
+            {...menuProps}
+            onOpenChange={this.handleOpenChange}
+            selectedKeys={selectedKeys}
+            className={styles.Menu}
+          >
+            {this.getNavMenuItems(this.menus)}
+          </Menu>
+        </Header>
+      );
+    }
   }
 }

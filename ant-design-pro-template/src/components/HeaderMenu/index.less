@@ -6,7 +6,6 @@
   line-height: 64px;
   padding-left: (@menu-collapsed-width - 32px) / 2;
   transition: all .3s;
-  background: #002140;
   overflow: hidden;
   img {
     display: inline-block;
@@ -39,5 +38,33 @@
 :global {
   .drawer .drawer-content {
     background: #001529;
+  }
+}
+
+@media screen and (min-width:769px){
+  .logo {
+    height: 128px;
+    line-height: 128px;
+    width: 36vh;
+    padding: 0;
+    img {
+      height: 60px;
+    }
+  }
+  
+  .Header {
+    height: 128px;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+    position: relative;
+    z-index: 10;
+    display: flex;
+    .Menu{
+      display: flex;
+      flex: 1;
+      padding:16px 0;
+      justify-content: space-around;
+      align-items: center;
+      border: none;
+    }
   }
 }
