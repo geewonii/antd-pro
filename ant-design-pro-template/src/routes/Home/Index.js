@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Carousel } from 'antd';
 
-import styles from './index.less';
+// import styles from './index.less';
 
 @connect(({ chart, loading }) => ({
   chart,
