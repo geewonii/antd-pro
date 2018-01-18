@@ -86,7 +86,7 @@ export default class GlobalHeader extends PureComponent {
             onClick={this.toggle}
           />
         )}
-        <span className={styles.phone}>客服热线： 400-837-2223</span>
+        {!isMobile && <span className={styles.phone}>客服热线： 400-837-2223</span>}
         <div className={styles.right}>
           <HeaderSearch
             className={`${styles.action} ${styles.search}`}
