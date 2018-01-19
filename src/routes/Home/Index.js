@@ -30,7 +30,6 @@ export default class Index extends Component {
       // rtl: true,
       // centerMode: true,
     };
-    console.log(this.props);
     return (
       <div className={styles.carousels}>
         <Carousel {...settings} >
