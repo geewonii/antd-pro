@@ -1,3 +1,6 @@
+/**
+ * GlobalHeader
+ */
 import React, { PureComponent } from 'react';
 import { Layout, Menu, Icon, Spin, Tag, Dropdown, Avatar, Divider } from 'antd';
 import moment from 'moment';

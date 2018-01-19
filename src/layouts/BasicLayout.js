@@ -171,7 +171,7 @@ class BasicLayout extends React.PureComponent {
         />
         <Layout>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <div style={{ minHeight: 'calc(100vh - 260px)' }}>
+            <div style={{ minHeight: 'calc(100vh - 315px)' }}>
               <Switch>
                 {
                   redirectData.map(item =>
@@ -192,7 +192,7 @@ class BasicLayout extends React.PureComponent {
                     )
                   )
                 }
-                <Redirect exact from="/" to={bashRedirect} />
+                <Redirect exact from="/" to={bashRedirect} style={{ margin: '-24px -24px 0' }} />
                 <Route render={NotFound} />
               </Switch>
             </div>
@@ -251,7 +251,7 @@ class BasicLayout extends React.PureComponent {
             onNoticeVisibleChange={this.handleNoticeVisibleChange}
           />
           <Content style={{ margin: '88px 24px 0', height: '100%' }}>
-            <div style={{ minHeight: 'calc(100vh - 260px)' }}>
+            <div style={{ minHeight: 'calc(100vh - 180px)' }}>
               <Switch>
                 {
                   redirectData.map(item =>

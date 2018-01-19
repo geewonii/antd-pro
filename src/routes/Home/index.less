@@ -1,12 +1,15 @@
-
+.carousels {
+  margin: -24px -24px 0 -24px;
+}
 :global {
   .ant-carousel {
-    margin: -24px -24px 0 -24px;
+    img{
+      width: 100%;
+    }
   }
   .ant-carousel .slick-slide {
     text-align: center;
-    height: 200px;
-    line-height: 200px;
+    // min-height: 160px;
     background: #364d79;
     overflow: hidden;
   }
@@ -16,10 +19,5 @@
   }
 }
 @media only screen and (min-width: 769px) {
-  :global {
-    .ant-carousel .slick-slide {
-      height: 500px;
-      line-height: 500px;
-    }
-  }
+  
 }

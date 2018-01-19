@@ -215,7 +215,9 @@ export default class HeaderMenu extends PureComponent {
       return (
         <Header className={styles.Header}>
           <div className={styles.logo} key="logo">
-            <Link to="/"><img src={logo} alt="logo" /></Link>
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
           </div>
           <Menu
             key="Menu"
