@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Icon, message } from 'antd';
+import { Layout, message } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
-import { Route, Redirect, Switch, routerRedux } from 'dva/router';
+import { Route, Redirect, Switch, routerRedux, Link } from 'dva/router';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import { enquireScreen } from 'enquire-js';
@@ -93,9 +93,9 @@ class BasicLayout extends React.PureComponent {
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
-    let title = 'Ant Design Pro';
+    let title = '丰利金服';
     if (routerData[pathname] && routerData[pathname].name) {
-      title = `${routerData[pathname].name} - Ant Design Pro`;
+      title = `${routerData[pathname].name} - 丰利金服`;
     }
     return title;
   }
@@ -171,7 +171,7 @@ class BasicLayout extends React.PureComponent {
         />
         <Layout>
           <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <div style={{ minHeight: 'calc(100vh - 315px)' }}>
+            <div style={{ minHeight: 'calc(100vh - 300px)' }}>
               <Switch>
                 {
                   redirectData.map(item =>
@@ -198,26 +198,29 @@ class BasicLayout extends React.PureComponent {
             </div>
             <GlobalFooter
               links={[{
-                key: 'Pro 首页',
-                title: 'Pro 首页',
-                href: 'http://pro.ant.design',
+                key: '新手指南',
+                title: '新手指南',
+                children: [
+                  {
+                    key: '公司简介',
+                    title: <Link to="/home" >公司简介</Link>,
+                  }, {
+                    key: '组织信息',
+                    title: <Link to="/home" >组织信息</Link>,
+                  }],
+              }, {
+                key: '诚信保障',
+                title: '诚信保障',
                 blankTarget: true,
               }, {
-                key: 'github',
-                title: <Icon type="github" />,
-                href: 'https://github.com/ant-design/ant-design-pro',
+                key: '怎么理财',
+                title: '怎么理财',
                 blankTarget: true,
               }, {
-                key: 'Ant Design',
-                title: 'Ant Design',
-                href: 'http://ant.design',
+                key: '关于我们',
+                title: '关于我们',
                 blankTarget: true,
               }]}
-              copyright={
-                <div>
-                  Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
-                </div>
-              }
             />
           </Content>
         </Layout>
@@ -278,26 +281,29 @@ class BasicLayout extends React.PureComponent {
             </div>
             <GlobalFooter
               links={[{
-                key: 'Pro 首页',
-                title: 'Pro 首页',
-                href: 'http://pro.ant.design',
+                key: '新手指南',
+                title: '新手指南',
+                children: [
+                  {
+                    key: '公司简介',
+                    title: <Link to="/home" >公司简介</Link>,
+                  }, {
+                    key: '组织信息',
+                    title: <Link to="/home" >组织信息</Link>,
+                  }],
+              }, {
+                key: '诚信保障',
+                title: '诚信保障',
                 blankTarget: true,
               }, {
-                key: 'github',
-                title: <Icon type="github" />,
-                href: 'https://github.com/ant-design/ant-design-pro',
+                key: '怎么理财',
+                title: '怎么理财',
                 blankTarget: true,
               }, {
-                key: 'Ant Design',
-                title: 'Ant Design',
-                href: 'http://ant.design',
+                key: '关于我们',
+                title: '关于我们',
                 blankTarget: true,
               }]}
-              copyright={
-                <div>
-                  Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
-                </div>
-              }
             />
           </Content>
         </Layout>

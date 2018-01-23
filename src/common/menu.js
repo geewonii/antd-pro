@@ -88,6 +88,7 @@ const menuData = [{
   name: '异常页',
   icon: 'warning',
   path: 'exception',
+  hideInMenu: true,
   children: [{
     name: '403',
     path: '403',
@@ -100,7 +101,6 @@ const menuData = [{
   }, {
     name: '触发异常',
     path: 'trigger',
-    hideInMenu: true,
   }],
 }, {
   name: '账户',
@@ -122,6 +122,10 @@ const menuData = [{
   icon: 'book',
   path: 'http://pro.ant.design/docs/getting-started',
   target: '_blank',
+}, {
+  name: '客服帮助',
+  icon: 'frown-o',
+  path: 'help',
 }];
 
 function formatter(data, parentPath = '', parentAuthority) {

@@ -1,29 +1,106 @@
 @import "~antd/lib/style/themes/default.less";
 
 .globalFooter {
-  padding: 0 16px;
-  margin: 48px 0 24px 0;
-  text-align: center;
-
-  .links {
-    margin-bottom: 8px;
-
-    a {
-      color: @text-color-secondary;
-      transition: all .3s;
-
-      &:not(:last-child) {
-        margin-right: 40px;
+  padding: 80px 16px 0 16px;
+  margin: 48px -24px 0 -24px;
+  line-height: 36px;
+  color: #fff;
+  background-color: #262839;
+  .info {
+    border-bottom: 1px solid #3c3e4d;
+    .links {
+      display: flex;
+      justify-content: space-between;
+      a {
+        color: #fff;
+        transition: all .3s;
+        &:hover {
+          color: #93a0b0;
+        }
       }
-
-      &:hover {
-        color: @text-color;
+    }
+    .words {
+      width: 242px;
+      margin: 0 auto;
+    }
+    .code {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  
+  .copyright {
+    color: #fff;
+    font-size: @font-size-base;
+    border-bottom: 1px solid #3c3e4d;
+    height: 50px;
+    line-height: 50px;
+    .image {
+      a{
+        color: #fff;
+        &:hover {
+          color: #93a0b0;
+        }
+        img {
+          height: 16px;
+          width: 16px;
+          margin-top: -2px;
+          margin-right: 4px;
+        }
+      }
+    }
+    .images {
+      a {
+        margin-right: 11px;
+        img {
+          height: 21px;
+        }
+      }
+      & :nth-child(1) {
+        img {
+          height: 30px;
+        }
+      }
+      & :last-child {
+        margin-right: 0;
       }
     }
   }
 
-  .copyright {
-    color: @text-color-secondary;
-    font-size: @font-size-base;
+  .footer {
+    text-align: center;
+    margin: 20px 0;
+    a {
+      color: #fff;
+    }
+  }
+}
+@media only screen and (max-width: @screen-xs) {
+  .globalFooter {
+    .info {
+      .words {
+        width: 100%;
+      }
+    }
+  }
+}
+@media only screen and (max-width: @screen-xl) {
+  padding-top: 40px;
+  .globalFooter {
+    .info {
+      border-bottom: none;
+    }
+    .copyright {
+      border-bottom: none;
+      .images {
+        a {
+          margin-right: 18px;
+        }
+      }
+    }
   }
 }
