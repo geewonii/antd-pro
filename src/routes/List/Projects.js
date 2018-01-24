@@ -49,7 +49,6 @@ export default class CoverCardList extends PureComponent {
   render() {
     const { list: { list = [] }, loading, form } = this.props;
     const { getFieldDecorator } = form;
-
     const cardList = list ? (
       <List
         rowKey="id"

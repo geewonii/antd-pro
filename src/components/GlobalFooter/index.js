@@ -64,8 +64,6 @@ export default ({ className, links }) => {
             <div><Icon type="phone" /> 客服电话：<strong style={{ fontSize: '20px' }}>400-837-2223</strong></div>
             <div><Icon type="mail" /> 客服邮箱：service@phonelee.com</div>
             <div><Icon type="hourglass" /> 服务时间：9:00-18:00(周一至周五)</div>
-            {/* <div><Icon type="phone" /> 投诉电话：(020)400-837-2223</div>
-            <div><Icon type="mail" /> 投诉邮箱：service@phonelee.com</div> */}
           </div>
         </Col>
         <Col {...codeProps} className={styles.code}>

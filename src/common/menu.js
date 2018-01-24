@@ -106,7 +106,7 @@ const menuData = [{
   name: '账户',
   icon: 'user',
   path: 'user',
-  authority: 'guest',
+  // authority: 'guest',
   children: [{
     name: '登录',
     path: 'login',

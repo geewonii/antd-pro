@@ -1,3 +1,4 @@
+@import "~antd/lib/style/themes/default.less";
 .carousels {
   margin: -24px -24px 0 -24px;
 }
@@ -9,12 +10,53 @@
   }
   .ant-carousel .slick-slide {
     text-align: center;
-    // min-height: 160px;
     background: #364d79;
     overflow: hidden;
   }
   .ant-carousel .slick-slide h3 {
     color: #fff;
   }
+  .ant-card-hoverable:hover {
+    top: -3px;
+    transition: all .2s linear;
+    -webkit-transition: all .2s linear;
+  }
+}
+.project {
+  // max-width: 1200px;
+  // margin: 24px auto;
+  margin: 24px;
 }
 
+.title {
+  margin-bottom: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  h4 {
+    display: inline-block;
+    font-size: 20px;
+    margin: 0 10px 0 0;
+    color: #29374b;
+    font-weight: 700;
+  }
+  span {
+    color: #727e90;
+  }
+}
+
+.cardItemContent {
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: -4px;
+  line-height: 20px;
+  height: 20px;
+  & > span {
+    color: @text-color-secondary;
+    flex: 1;
+    font-size: 12px;
+  }
+  .right {
+    flex: 0 1 auto;
+  }
+}
