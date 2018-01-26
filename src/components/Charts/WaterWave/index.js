@@ -36,7 +36,7 @@ export default class WaterWave extends PureComponent {
   };
 
   renderChart() {
-    const { percent, color = '#1890FF' } = this.props;
+    const { percent, color = '#1890FF', contColor = '#1890FF' } = this.props;
     const data = percent / 100;
     const self = this;
 
@@ -101,7 +101,7 @@ export default class WaterWave extends PureComponent {
 
       const gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
       gradient.addColorStop(0, '#ffffff');
-      gradient.addColorStop(1, '#1890FF');
+      gradient.addColorStop(1, contColor);
       ctx.fillStyle = gradient;
       ctx.fill();
       ctx.restore();

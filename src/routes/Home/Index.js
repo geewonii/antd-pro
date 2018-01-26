@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import moment from 'moment';
 import { Link } from 'dva/router';
-import { Carousel, List, Card } from 'antd';
-
+import { Carousel, List, Card, Progress } from 'antd';
+import { WaterWave } from '../../components/Charts';
 import styles from './index.less';
 
 @connect(({ isMobile, home, loading }) => ({
@@ -17,7 +17,7 @@ export default class Index extends Component {
     this.props.dispatch({
       type: 'home/fetch',
       payload: {
-        count: 8,
+        count: 2,
       },
     });
   }
@@ -58,6 +58,45 @@ export default class Index extends Component {
       </div>
     ) : null;
 
+    const card1List = list ? (
+      <div>
+        <div className={styles.title}>
+          <h4>自选投</h4>
+          <span>自动投标工具，资金不放假，理财有规划</span>
+        </div>
+        <List
+          rowKey="id"
+          loading={loading}
+          grid={{ gutter: 24, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }}
+          dataSource={list}
+          renderItem={item => (
+            <List.Item>
+              <a href="#">
+                <Card
+                  className={styles.card}
+                  hoverable
+                  cover={<img alt={item.title} src={item.cover} height={154} />}
+                >
+                  <Card.Meta
+                    title={item.title}
+                    description={item.subDescription}
+                  />
+                  <Progress percent={30} status="active" />
+                  <div className={styles.cardItemContent}>
+                    <span>{moment(item.updatedAt).fromNow()}</span>
+                    <div className={styles.right}>自动投标</div>
+                    <div className={styles.right}>自动投标</div>
+                    <div className={styles.right}>自动投标</div>
+                    <div className={styles.right}>自动投标</div>
+                  </div>
+                </Card>
+              </a>
+            </List.Item>
+          )}
+        />
+      </div>
+    ) : null;
+
     const cardList = list ? (
       <div>
         <div className={styles.title}>
@@ -81,6 +120,7 @@ export default class Index extends Component {
                     title={item.title}
                     description={item.subDescription}
                   />
+                  <Progress percent={30} status="active" />
                   <div className={styles.cardItemContent}>
                     <span>{moment(item.updatedAt).fromNow()}</span>
                     <div className={styles.right}>自动投标</div>
@@ -93,11 +133,47 @@ export default class Index extends Component {
       </div>
     ) : null;
 
+    const alreadyList = list ? (
+      <div>
+        <div className={styles.title}>
+          <h4>轻松投</h4>
+          <span>已完成投标</span>
+        </div>
+        <List
+          rowKey="id"
+          loading={loading}
+          grid={{ gutter: 24, lg: 4, md: 3, sm: 2, xs: 1 }}
+          dataSource={list}
+          renderItem={item => (
+            <List.Item>
+              <a href="#">
+                <Card title={item.title} bodyStyle={{ textAlign: 'center', fontSize: 0 }} bordered={false}>
+                  <WaterWave
+                    height={161}
+                    title="当前墨迹进度"
+                    percent={34}
+                    color="#f60"
+                    contColor="#f60"
+                  />
+                </Card>
+              </a>
+            </List.Item>
+          )}
+        />
+      </div>
+    ) : null;
+
     return (
       <div className={styles.carousels}>
         {CarouselList}
         <div className={styles.project}>
+          {card1List}
+        </div>
+        <div className={styles.project}>
           {cardList}
+        </div>
+        <div className={styles.project}>
+          {alreadyList}
         </div>
       </div>
     );

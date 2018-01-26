@@ -150,9 +150,9 @@ export const getRouterData = (app) => {
     '/exception/trigger': {
       component: dynamicWrapper(app, ['error'], () => import('../routes/Exception/triggerException')),
     },
-    // '/user': {
-    //   component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
-    // },
+    '/user': {
+      component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
+    },
     '/user/login': {
       component: dynamicWrapper(app, [], () => import('../routes/User/Login')),
     },

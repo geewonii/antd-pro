@@ -1,13 +1,13 @@
 import { getUrlParams } from './utils';
 
 const titles = [
-  'Alipay',
-  'Angular',
-  'Ant Design',
-  'Ant Design Pro',
-  'Bootstrap',
-  'React',
-  'Vue',
+  '个人经营贷',
+  '自选投',
+  '丰利股票',
+  '天气湿度',
+  '腰酸程度',
+  '饥饿程度',
+  '。。',
   'Webpack',
 ];
 const avatars = [
