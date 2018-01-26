@@ -103,7 +103,7 @@ class BasicLayout extends React.PureComponent {
     // According to the url parameter to redirect
     // 这里是重定向的,重定向到 url 的 redirect 参数所示地址
     const urlParams = new URL(window.location.href);
-    const redirect = urlParams.searchParams.get('redirect') || '/home';
+    const redirect = urlParams.searchParams.get('redirect') || '/home/index';
     // Remove the parameters in the url
     urlParams.searchParams.delete('redirect');
     window.history.pushState(null, 'redirect', urlParams.href);
@@ -203,10 +203,10 @@ class BasicLayout extends React.PureComponent {
                 children: [
                   {
                     key: '公司简介',
-                    title: <Link to="/home" >公司简介</Link>,
+                    title: <Link to="/home/index" >公司简介</Link>,
                   }, {
                     key: '组织信息',
-                    title: <Link to="/home" >组织信息</Link>,
+                    title: <Link to="/home/index" >组织信息</Link>,
                   }],
               }, {
                 key: '诚信保障',

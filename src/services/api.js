@@ -1,6 +1,10 @@
 import { stringify } from 'qs';
 import request from '../utils/request';
 
+export async function homeIndexCarouselList() {
+  return request('/api/home/carousel');
+}
+
 export async function queryProjectNotice() {
   return request('/api/project/notice');
 }
