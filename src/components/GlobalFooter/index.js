@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon, Row, Col } from 'antd';
+import { Link } from 'dva/router';
 import classNames from 'classnames';
 import styles from './index.less';
 import icpImage from '../../assets/icp.png';
@@ -10,7 +11,7 @@ import certImage from '../../assets/cert.png';
 import cnnicImage from '../../assets/cnnic.png';
 import vSealImage from '../../assets/v_seal.png';
 
-export default ({ className, links }) => {
+export default ({ className, globalFooterData }) => {
   const clsString = classNames(styles.globalFooter, className);
   const infoProps = {
     xs: 20,
@@ -43,15 +44,32 @@ export default ({ className, links }) => {
       <Row gutter={24} className={styles.info}>
         <Col {...infoProps}>
           {
-            links && (
+            globalFooterData && (
               <div className={styles.links}>
-                {links.map(todo => (
+                {globalFooterData.links.map(todo => (
                   <div key={todo.key}>
-                    <div>{todo.title}</div>
+                    <div>
+                      {
+                        todo.blankTarget
+                        ?
+                        todo.href ? <Link to={todo.href} >{todo.title}</Link> : todo.title
+                        :
+                        todo.href ? <Link to={todo.href} >{todo.title}</Link> : todo.title
+                      }
+                    </div>
                     {
                       todo.children && todo.children.map(
-                        list => <div key={list.key}>{list.title}</div>
-                      )
+                        list => (
+                          <div key={list.key} style={{ fontSize: '12px', textAlign: 'center' }}>
+                            {
+                              list.blankTarget
+                              ?
+                              list.href ? <Link to={list.href} >{list.title}</Link> : list.title
+                              :
+                              list.href ? <Link to={list.href} >{list.title}</Link> : list.title
+                            }
+                          </div>
+                      ))
                     }
                   </div>
                 ))}
@@ -61,20 +79,28 @@ export default ({ className, links }) => {
         </Col>
         <Col {...infoProps}>
           <div className={styles.words}>
-            <div><Icon type="phone" /> 客服电话：<strong style={{ fontSize: '20px' }}>400-837-2223</strong></div>
-            <div><Icon type="mail" /> 客服邮箱：service@phonelee.com</div>
-            <div><Icon type="hourglass" /> 服务时间：9:00-18:00(周一至周五)</div>
+            {
+              globalFooterData && globalFooterData.words.map(todo => (
+                <div key={todo.key}>
+                  <Icon type={todo.icon} />
+                  &nbsp;{todo.title}
+                  <span className={todo.className ? styles[todo.className] : ''} >
+                    {todo.content}
+                  </span>
+                </div>
+              ))
+            }
           </div>
         </Col>
         <Col {...codeProps} className={styles.code}>
-          <Col span={11}>
-            <img src="https://www.phonelee.com/Content/siteimages/%E4%B8%B0%E5%88%A9%E9%87%91%E6%9C%8D%E6%9C%8D%E5%8A%A1%E5%8F%B72.jpg" alt="" />
-            <p>关注微信服务号</p>
-          </Col>
-          <Col span={11}>
-            <img src="https://www.phonelee.com/Content/siteimages/%E5%BE%AE%E5%8D%9A.jpg" alt="" />
-            <p>关注微博</p>
-          </Col>
+          {
+            globalFooterData && globalFooterData.qrCode.map(todo => (
+              <Col span={11} key={todo.key}>
+                <img src={todo.imgUrl} alt={todo.title} />
+                <p>{todo.title}</p>
+              </Col>
+            ))
+          }
         </Col>
       </Row>
       <Row gutter={24} className={styles.copyright}>

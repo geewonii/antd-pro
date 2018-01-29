@@ -5,6 +5,11 @@ export async function homeIndexCarouselList() {
   return request('/api/home/carousel');
 }
 
+export async function globalFooterFunc() {
+  return request('/api/globalFooterData');
+}
+
+
 export async function queryProjectNotice() {
   return request('/api/project/notice');
 }

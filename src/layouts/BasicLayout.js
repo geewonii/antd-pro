@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Layout, message } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
-import { Route, Redirect, Switch, routerRedux, Link } from 'dva/router';
+import { Route, Redirect, Switch, routerRedux } from 'dva/router';
 import { ContainerQuery } from 'react-container-query';
 import classNames from 'classnames';
 import { enquireScreen } from 'enquire-js';
@@ -88,6 +88,13 @@ class BasicLayout extends React.PureComponent {
     });
     this.props.dispatch({
       type: 'user/fetchCurrent',
+    });
+    // 此处传参数 ‘isMobile’和globalFooter需要的数据
+    this.props.dispatch({
+      type: 'global/globalFooterData',
+      payload: {
+        isMobile: this.state.isMobile,
+      },
     });
   }
   getPageTitle() {
@@ -196,32 +203,7 @@ class BasicLayout extends React.PureComponent {
                 <Route render={NotFound} />
               </Switch>
             </div>
-            <GlobalFooter
-              links={[{
-                key: '新手指南',
-                title: '新手指南',
-                children: [
-                  {
-                    key: '公司简介',
-                    title: <Link to="/home/index" >公司简介</Link>,
-                  }, {
-                    key: '组织信息',
-                    title: <Link to="/home/index" >组织信息</Link>,
-                  }],
-              }, {
-                key: '诚信保障',
-                title: '诚信保障',
-                blankTarget: true,
-              }, {
-                key: '怎么理财',
-                title: '怎么理财',
-                blankTarget: true,
-              }, {
-                key: '关于我们',
-                title: '关于我们',
-                blankTarget: true,
-              }]}
-            />
+            <GlobalFooter globalFooterData={this.props.globalFooterData} />
           </Content>
         </Layout>
       </Layout>
@@ -279,32 +261,7 @@ class BasicLayout extends React.PureComponent {
                 <Route render={NotFound} />
               </Switch>
             </div>
-            <GlobalFooter
-              links={[{
-                key: '新手指南',
-                title: '新手指南',
-                children: [
-                  {
-                    key: '公司简介',
-                    title: <Link to="/home" >公司简介</Link>,
-                  }, {
-                    key: '组织信息',
-                    title: <Link to="/home" >组织信息</Link>,
-                  }],
-              }, {
-                key: '诚信保障',
-                title: '诚信保障',
-                blankTarget: true,
-              }, {
-                key: '怎么理财',
-                title: '怎么理财',
-                blankTarget: true,
-              }, {
-                key: '关于我们',
-                title: '关于我们',
-                blankTarget: true,
-              }]}
-            />
+            <GlobalFooter globalFooterData={this.props.globalFooterData} />
           </Content>
         </Layout>
       </Layout>
@@ -325,4 +282,5 @@ export default connect(({ user, global, loading }) => ({
   collapsed: global.collapsed,
   fetchingNotices: loading.effects['global/fetchNotices'],
   notices: global.notices,
+  globalFooterData: global.globalFooterData,
 }))(BasicLayout);
