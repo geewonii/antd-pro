@@ -63,12 +63,6 @@ export default {
         notices: state.notices.filter(item => item.type !== payload),
       };
     },
-    screenIsMobile(state, { payload }) {
-      return {
-        ...state,
-        isMobile: payload,
-      };
-    },
     globalFooter(state, { payload }) {
       return {
         ...state,

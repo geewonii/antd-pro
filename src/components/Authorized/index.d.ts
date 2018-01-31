@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { RouteProps } from 'react-router';
 
+<<<<<<< HEAD
 type authorityFN = () => string;
+=======
+type authorityFN = (currentAuthority?: string) => boolean;
+>>>>>>> upstream/master
 
 type authority = string | Array<string> | authorityFN | Promise<any>;
 

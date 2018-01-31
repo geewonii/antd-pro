@@ -38,15 +38,13 @@ const checkPermissions = (authority, currentAuthority, target, Exception) => {
 
   // Promise 处理
   if (isPromise(authority)) {
-    return () => (
-      <PromiseRender ok={target} error={Exception} promise={authority} />
-    );
+    return <PromiseRender ok={target} error={Exception} promise={authority} />;
   }
 
   // Function 处理
   if (typeof authority === 'function') {
     try {
-      const bool = authority();
+      const bool = authority(currentAuthority);
       if (bool) {
         return target;
       }

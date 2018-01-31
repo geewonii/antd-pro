@@ -5,7 +5,10 @@ export interface WaterWaveProps {
   height: number;
   percent: number;
   style?: React.CSSProperties;
+<<<<<<< HEAD
   contColor?: string;
+=======
+>>>>>>> upstream/master
 }
 
 export default class WaterWave extends React.Component<WaterWaveProps, any> {}
