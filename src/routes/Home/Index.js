@@ -6,8 +6,8 @@ import { Carousel, List, Card, Progress } from 'antd';
 import { WaterWave } from '../../components/Charts';
 import styles from './index.less';
 
-@connect(({ isMobile, home, loading }) => ({
-  isMobile,
+@connect(({ global, home, loading }) => ({
+  global,
   home,
   loading: loading.models.home,
 }))
@@ -26,7 +26,7 @@ export default class Index extends Component {
     const settings = {
       autoplay: true,
       adaptiveHeight: true,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 3000,
       speed: 300,
       slidesToShow: 1,
       // lazyLoad: true,
@@ -41,7 +41,7 @@ export default class Index extends Component {
       // centerMode: true,
     };
 
-    const { isMobile, home: { carouselData, list = [] }, loading } = this.props;
+    const { global: { isMobile }, home: { carouselData, list = [] }, loading } = this.props;
     const CarouselList = carouselData ? (
       <div>
         <Carousel {...settings}>
@@ -60,13 +60,16 @@ export default class Index extends Component {
 
     const card1List = list ? (
       <div>
-        <div className={styles.title}>
-          <h4>自选投</h4>
-          <span>自动投标工具，资金不放假，理财有规划</span>
-        </div>
         <List
           rowKey="id"
           loading={loading}
+          split={false}
+          header={
+            <div className={styles.title}>
+              <h4>轻松投</h4>
+              <span>已完成投标</span>
+            </div>
+          }
           grid={{ gutter: 24, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }}
           dataSource={list}
           renderItem={item => (
@@ -85,9 +88,6 @@ export default class Index extends Component {
                   <div className={styles.cardItemContent}>
                     <span>{moment(item.updatedAt).fromNow()}</span>
                     <div className={styles.right}>自动投标</div>
-                    <div className={styles.right}>自动投标</div>
-                    <div className={styles.right}>自动投标</div>
-                    <div className={styles.right}>自动投标</div>
                   </div>
                 </Card>
               </a>
@@ -99,13 +99,16 @@ export default class Index extends Component {
 
     const cardList = list ? (
       <div>
-        <div className={styles.title}>
-          <h4>轻松投</h4>
-          <span>自动投标工具，资金不放假，理财有规划</span>
-        </div>
         <List
           rowKey="id"
           loading={loading}
+          split={false}
+          header={
+            <div className={styles.title}>
+              <h4>轻松投</h4>
+              <span>已完成投标</span>
+            </div>
+          }
           grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
           dataSource={list}
           renderItem={item => (
@@ -135,13 +138,16 @@ export default class Index extends Component {
 
     const alreadyList = list ? (
       <div>
-        <div className={styles.title}>
-          <h4>轻松投</h4>
-          <span>已完成投标</span>
-        </div>
         <List
           rowKey="id"
           loading={loading}
+          split={false}
+          header={
+            <div className={styles.title}>
+              <h4>轻松投</h4>
+              <span>已完成投标</span>
+            </div>
+          }
           grid={{ gutter: 24, lg: 4, md: 3, sm: 2, xs: 1 }}
           dataSource={list}
           renderItem={item => (

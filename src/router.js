@@ -9,8 +9,10 @@ import styles from './index.less';
 
 const { ConnectedRouter } = routerRedux;
 const { AuthorizedRoute } = Authorized;
+// const antIcon = <Icon type="loading" spin />;
 dynamic.setDefaultLoadingComponent(() => {
   return <Spin size="large" className={styles.globalSpin} />;
+  // return <Spin size="large" indicator={antIcon} className={styles.globalSpin} />;
 });
 
 function RouterConfig({ history, app }) {

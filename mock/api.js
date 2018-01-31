@@ -110,21 +110,21 @@ export const getHomeIndexCarouselList = [
     title: '1',
     links: '/',
     imgPC: 'https://dn-miracle-photo.qbox.me/1d6823c3-f706-4554-8824-7584a7e0b84b',
-    imgMobile: 'https://dn-miracle-photo.qbox.me/1d6823c3-f706-4554-8824-7584a7e0b84b',
+    imgMobile: 'http://img.zcool.cn/community/015b6d5a695e83a80120a123cf044d.png',
   },
   {
     id: '2',
     title: '2',
     links: '/home',
     imgPC: 'https://dn-miracle-photo.qbox.me/838c9dfa-eeed-4b10-977e-ac4bf4ed8dab',
-    imgMobile: 'https://dn-miracle-photo.qbox.me/838c9dfa-eeed-4b10-977e-ac4bf4ed8dab',
+    imgMobile: 'http://img.zcool.cn/community/0140cd5a695ecca80121346600ae21.JPG@800w_1l_2o_100sh.jpg',
   },
   {
     id: '3',
     title: '3',
     links: '/home',
     imgPC: 'https://dn-miracle-photo.qbox.me/18be680c-7f6c-4edd-b528-7f74737ef3d9',
-    imgMobile: 'https://dn-miracle-photo.qbox.me/18be680c-7f6c-4edd-b528-7f74737ef3d9',
+    imgMobile: 'http://img.zcool.cn/community/01c2a95a695ee7a80120a123b3c3eb.png',
   },
 ];
 
