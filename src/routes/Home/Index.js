@@ -123,7 +123,7 @@ export default class Index extends Component {
                     title={item.title}
                     description={item.subDescription}
                   />
-                  <Progress percent={30} status="active" />
+                  <Progress percent={50} strokeWidth={6} />
                   <div className={styles.cardItemContent}>
                     <span>{moment(item.updatedAt).fromNow()}</span>
                     <div className={styles.right}>自动投标</div>
