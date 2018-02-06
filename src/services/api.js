@@ -1,8 +1,8 @@
 import { stringify } from 'qs';
 import request from '../utils/request';
 
-export async function homeIndexCarouselList() {
-  return request('/api/home/carousel');
+export async function homeData() {
+  return request('/api/home/data');
 }
 
 export async function globalFooterFunc() {

@@ -1,51 +1,48 @@
 @import "~antd/lib/style/themes/default.less";
 
-.result {
-  text-align: center;
-  width: 72%;
-  margin: 0 auto;
-
-  .icon {
-    font-size: 72px;
-    line-height: 72px;
-    margin-bottom: 24px;
-
-    & > .success {
-      color: @success-color;
-    }
-
-    & > .error {
-      color: @error-color;
-    }
-  }
-
-  .title {
-    font-size: 24px;
-    color: @heading-color;
-    font-weight: 500;
-    line-height: 32px;
-    margin-bottom: 16px;
-  }
-
-  .description {
-    font-size: 14px;
-    line-height: 22px;
+.meta {
+  margin-bottom: 8px;
+}
+.cardBottom {
+  display: flex;
+  justify-content: center;
+  color: @primary-color;
+  & > span {
     color: @text-color-secondary;
-    margin-bottom: 24px;
+    font-size: 12px;
   }
-
-  .extra {
-    background: #fafafa;
-    padding: 24px 40px;
-    border-radius: @border-radius-sm;
-    text-align: left;
-  }
-
-  .actions {
-    margin-top: 32px;
-
-    button:not(:last-child) {
-      margin-right: 8px;
+  .cardChild {
+    width: 50%;
+    text-align: center;
+    font-size: 36px;
+    line-height: 30px;
+    margin-top: 10px;
+    & > span {
+      color: @text-color-secondary;
+      font-size: 12px;
+      vertical-align: top;
     }
+    div {
+      border-right: 1px solid @primary-color;
+      font: inherit;
+      margin: 10px 0;
+    }
+  }
+  & :last-child {
+    div {
+      border-right: none;
+    }
+  }
+}
+.description {
+  font-size: 12px;
+  margin-bottom: 5px;
+  span {
+    display: inline-block;
+    padding: 0 2px 2px;
+    border: 1px solid #93a0b0;
+    border-radius: 2px;
+    margin-right: 5px;
+    margin-bottom: 5px;
   }
 }
