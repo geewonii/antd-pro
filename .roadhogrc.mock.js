@@ -1,6 +1,8 @@
 import mockjs from 'mockjs';
 import { getRule, postRule } from './mock/rule';
-import { getActivities, getNotice, getFakeList, getHomeIndexCarouselList } from './mock/api';
+import { getActivities, getNotice, getFakeList } from './mock/api';
+import { getGlobalFooterData } from './mock/global';
+import { getHomeData } from './mock/home';
 import { getFakeChartData } from './mock/chart';
 import { imgMap } from './mock/utils';
 import { getProfileBasicData } from './mock/profile';
@@ -14,7 +16,8 @@ const noProxy = process.env.NO_PROXY === 'true';
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 const proxy = {
   // 支持值为 Object 和 Array
-  'GET /api/home/carousel': getHomeIndexCarouselList,
+  'GET /api/home/data': getHomeData,
+  'GET /api/globalFooterData': getGlobalFooterData,
   'GET /api/currentUser': {
     $desc: "获取当前用户接口",
     $params: {
@@ -135,4 +138,4 @@ const proxy = {
   },
 };
 
-export default format(noProxy ? {} : delay(proxy, 1000));
+export default format(noProxy ? {} : delay(proxy, 0));

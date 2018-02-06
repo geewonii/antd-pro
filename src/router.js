@@ -1,5 +1,5 @@
 import React from 'react';
-import { routerRedux, Switch } from 'dva/router';
+import { routerRedux, Route, Switch } from 'dva/router';
 import { LocaleProvider, Spin } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import dynamic from 'dva/dynamic';
@@ -9,8 +9,10 @@ import styles from './index.less';
 
 const { ConnectedRouter } = routerRedux;
 const { AuthorizedRoute } = Authorized;
+// const antIcon = <Icon type="loading" spin />;
 dynamic.setDefaultLoadingComponent(() => {
   return <Spin size="large" className={styles.globalSpin} />;
+  // return <Spin size="large" indicator={antIcon} className={styles.globalSpin} />;
 });
 
 function RouterConfig({ history, app }) {
@@ -21,11 +23,9 @@ function RouterConfig({ history, app }) {
     <LocaleProvider locale={zhCN}>
       <ConnectedRouter history={history}>
         <Switch>
-          <AuthorizedRoute
+          <Route
             path="/user"
-            render={props => <UserLayout {...props} />}
-            authority="guest"
-            redirectPath="/"
+            component={UserLayout}
           />
           <AuthorizedRoute
             path="/"

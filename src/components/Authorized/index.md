@@ -24,14 +24,14 @@ order: 15
 | 参数      | 说明                                      | 类型         | 默认值 |
 |----------|------------------------------------------|-------------|-------|
 | children    | 正常渲染的元素，权限判断通过时展示           | ReactNode  | - |
-| authority   | 准入权限/权限判断         | `string | array | Promise | () => boolean` | - |
+| authority   | 准入权限/权限判断         | `string | array | Promise | (currentAuthority) => boolean` | - |
 | noMatch     | 权限异常渲染元素，权限判断不通过时展示        | ReactNode  | - |
 
 ### Authorized.AuthorizedRoute
 
 | 参数      | 说明                                      | 类型         | 默认值 |
 |----------|------------------------------------------|-------------|-------|
-| authority     | 准入权限/权限判断         | `string | array | Promise | () => boolean` | - |
+| authority     | 准入权限/权限判断         | `string | array | Promise | (currentAuthority) => boolean` | - |
 | redirectPath  | 权限异常时重定向的页面路由                | string  | - |
 
 其余参数与 `Route` 相同。
@@ -42,7 +42,7 @@ order: 15
 
 | 参数      | 说明                                      | 类型         | 默认值 |
 |----------|------------------------------------------|-------------|-------|
-| authority     | 准入权限/权限判断         | `string | Promise | () => boolean` | - |
+| authority     | 准入权限/权限判断         | `string | Promise | (currentAuthority) => boolean` | - |
 | error  | 权限异常时渲染元素                |  ReactNode | <Exception type="403" /> |
 
 ### Authorized.check
@@ -52,6 +52,6 @@ order: 15
 
 | 参数      | 说明                                      | 类型         | 默认值 |
 |----------|------------------------------------------|-------------|-------|
-| authority     | 准入权限/权限判断         | `string | Promise | () => boolean` | - |
-| target     | 权限判断通过时渲染的元素         | `string | array | Promise | () => boolean` | - |
+| authority     | 准入权限/权限判断         | `string | Promise | (currentAuthority) => boolean` | - |
+| target     | 权限判断通过时渲染的元素         | ReactNode | - |
 | Exception  | 权限异常时渲染元素                |  ReactNode | - |

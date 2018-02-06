@@ -104,30 +104,6 @@ export function fakeList(count) {
   return list;
 }
 
-export const getHomeIndexCarouselList = [
-  {
-    id: '1',
-    title: '1',
-    links: '/',
-    imgPC: 'https://dn-miracle-photo.qbox.me/1d6823c3-f706-4554-8824-7584a7e0b84b',
-    imgMobile: 'https://dn-miracle-photo.qbox.me/1d6823c3-f706-4554-8824-7584a7e0b84b',
-  },
-  {
-    id: '2',
-    title: '2',
-    links: '/home',
-    imgPC: 'https://dn-miracle-photo.qbox.me/838c9dfa-eeed-4b10-977e-ac4bf4ed8dab',
-    imgMobile: 'https://dn-miracle-photo.qbox.me/838c9dfa-eeed-4b10-977e-ac4bf4ed8dab',
-  },
-  {
-    id: '3',
-    title: '3',
-    links: '/home',
-    imgPC: 'https://dn-miracle-photo.qbox.me/18be680c-7f6c-4edd-b528-7f74737ef3d9',
-    imgMobile: 'https://dn-miracle-photo.qbox.me/18be680c-7f6c-4edd-b528-7f74737ef3d9',
-  },
-];
-
 export function getFakeList(req, res, u) {
   let url = u;
   if (!url || Object.prototype.toString.call(url) !== '[object String]') {
