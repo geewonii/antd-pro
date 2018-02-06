@@ -35,7 +35,10 @@ export default function ItemBid({
             title={title}
             description={content}
           />
-          <Progress percent={parseFloat(percent) || 0} strokeWidth={6} />
+          <div>
+            
+            <Progress percent={parseFloat(percent) || 0} />
+          </div>
           <div className={styles.cardBottom}>
             <div className={styles.cardChild}>
               <div>{annual || 0}%</div>

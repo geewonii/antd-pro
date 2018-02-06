@@ -17,9 +17,9 @@
     color: #fff;
   }
   .ant-card-hoverable:hover {
-    top: -3px;
     transition: all .2s linear;
     -webkit-transition: all .2s linear;
+    transform: translateY(-3px);
   }
 }
 .project {
@@ -28,11 +28,14 @@
   margin: 24px;
 }
 
+.header {
+  display: flex;
+}
 .title {
-  // margin-bottom: 20px;
-  white-space: nowrap;
+  flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   h4 {
     display: inline-block;
     font-size: 20px;
@@ -42,6 +45,14 @@
   }
   span {
     color: #727e90;
+  }
+}
+.more {
+  line-height: 30px;
+  margin-left:20px;
+  color: #727e90;
+  &:hover {
+    color: @primary-color;
   }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import moment from 'moment';
 import { Link } from 'dva/router';
-import { Carousel, List, Card, Progress } from 'antd';
+import { Carousel, List, Card, Progress, Icon } from 'antd';
 import { WaterWave } from '../../components/Charts';
 import ItemBid from '../../components/ItemBid';
 import styles from './index.less';
@@ -102,9 +102,14 @@ export default class Index extends Component {
           loading={loading}
           split={false}
           header={
-            <div className={styles.title}>
-              <h4>{list[0].ItemBidList.title}</h4>
-              <span>{list[0].ItemBidList.subhead}</span>
+            <div className={styles.header}>
+              <div className={styles.title}>
+                <h4>{list[0].ItemBidList.title}</h4>
+                <span>{list[0].ItemBidList.subhead}</span>
+              </div>
+              <Link to={list[0].ItemBidList.moreLink} className={styles.more}>
+                更多项目 <Icon type="right" />
+              </Link>
             </div>
           }
           grid={{ gutter: 24, xl: 4, lg: 2, md: 2, sm: 2, xs: 1 }}

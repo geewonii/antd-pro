@@ -28,6 +28,7 @@ const getHomeData = [
       parentId: '1',
       title: '自选投-穹顶计划',
       subhead: '产品丰富、期限多样、尽职风控 | 盒子正在努力审核项目，预计项目发布时间 10:00 , 13:00 , 16:00 , 20:00，其余时间与周末随机发标',
+      moreLink: '/home/index',
       children: [{
         id: '1',
         links: '/',
@@ -41,7 +42,43 @@ const getHomeData = [
       }, {
         id: '2',
         links: '/',
-        cover: '',
+        cover: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
+        title: '自选投-穹顶计划',
+        description: [{
+          id: 'description1',
+          text: '等额本息',
+          tips: '等额本息，是指一种贷款的还款方式。等额本息是在还款期内，每月偿还同等数额的贷款(包括本金和利息)。它和等额本金是不一样的概念，虽然刚开始还款时每月还款额可能会低于等额本金还款方式的额度，但是最终所还利息会高于等额本金还款方式，该方式经常被银行使用。',
+        }, {
+          id: 'description2',
+          text: '自担风险',
+          tips: 'tips',
+        }],
+        percent: '30',
+        date: '2018-12-25',
+        annual: '24.5',
+        month: '12',
+      }, {
+        id: '3',
+        links: '/',
+        cover: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
+        title: '自选投-穹顶计划',
+        description: [{
+          id: 'description1',
+          text: '等额本息',
+          tips: '等额本息，是指一种贷款的还款方式。等额本息是在还款期内，每月偿还同等数额的贷款(包括本金和利息)。它和等额本金是不一样的概念，虽然刚开始还款时每月还款额可能会低于等额本金还款方式的额度，但是最终所还利息会高于等额本金还款方式，该方式经常被银行使用。',
+        }, {
+          id: 'description2',
+          text: '自担风险',
+          tips: 'tips',
+        }],
+        percent: '30',
+        date: '2018-12-25',
+        annual: '24.5',
+        month: '12',
+      }, {
+        id: '4',
+        links: '/',
+        cover: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
         title: '自选投-穹顶计划',
         description: [{
           id: 'description1',

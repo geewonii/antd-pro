@@ -24,7 +24,6 @@
     }
     div {
       border-right: 1px solid @primary-color;
-      font: inherit;
       margin: 10px 0;
     }
   }
@@ -39,10 +38,14 @@
   margin-bottom: 5px;
   span {
     display: inline-block;
-    padding: 0 2px 2px;
+    padding: 0 4px 2px;
     border: 1px solid #93a0b0;
-    border-radius: 2px;
+    border-radius: 4px;
     margin-right: 5px;
     margin-bottom: 5px;
+    &:hover {
+      color: @primary-color;
+      border-color: @primary-color;
+    }
   }
 }
