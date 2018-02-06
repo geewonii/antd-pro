@@ -15,11 +15,8 @@ order: 13
 
 | 参数      | 说明                                      | 类型         | 默认值 |
 |----------|------------------------------------------|-------------|-------|
-<<<<<<< HEAD
-=======
 | value    |选中的项              |string[] \| number[] | |
 | defaultValue    |默认选中的项   |string[] \| number[] | |
->>>>>>> upstream/master
 | onChange | 标签选择的回调函数 | Function(checkedTags) |  |
 | expandable | 是否展示 `展开/收起` 按钮 | Boolean | false |
 
@@ -28,9 +25,5 @@ order: 13
 
 | 参数      | 说明                                      | 类型         | 默认值 |
 |----------|------------------------------------------|-------------|-------|
-<<<<<<< HEAD
-| value | TagSelect的值  | Function(checkedTags) | - |
-=======
 | value | TagSelect的值  | string\| number | - |
->>>>>>> upstream/master
 | children | tag的内容 | string \| ReactNode | - |

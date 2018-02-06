@@ -2,18 +2,7 @@ import * as React from 'react';
 export interface TagSelectProps {
   onChange?: (value: Array<string>) => void;
   expandable?: boolean;
-<<<<<<< HEAD
-  style?: React.CSSProperties;
-}
-export interface TagSelectOptionProps {
-  value: string;
-=======
   value?: Array<string>| Array<number>;
-  style?: React.CSSProperties;
-}
-export interface TagSelectOptionProps {
-  value: string| number;
->>>>>>> upstream/master
   style?: React.CSSProperties;
 }
 
