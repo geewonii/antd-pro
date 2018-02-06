@@ -16,4 +16,5 @@ yarn-error.log
 
 /coverage
 .idea
+.eslintrc
 yarn.lock
