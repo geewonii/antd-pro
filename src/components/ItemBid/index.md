@@ -13,8 +13,12 @@ order: 12
 
 | 参数      | 说明                                      | 类型         | 默认值 |
 |----------|------------------------------------------|-------------|-------|
-| type | 类型，封面图 | Enum {'image', 'text'} | - |
-| title       | 标题     | ReactNode  | -    |
-| description | 结果描述    | ReactNode  | -    |
-| extra       | 补充信息，有默认的灰色背景     | ReactNode  | -    |
-| actions     | 操作建议，推荐放置跳转链接，按钮组等    | ReactNode  | -    |
+| links | 路由地址 | String | - |
+| cover | 封面图 | String | - |
+| title | 标题 | String | - |
+| description | 内容描述    | ReactNode  | -    |
+| annual | 年利率 | Number | - |
+| month | 投资期限 | Number | - |
+| num1 | 已融资金额 | Number | - |
+| num2 | 需融资金额 | Number | - |
+| date | 发标日期 | String | - |

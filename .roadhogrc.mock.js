@@ -138,4 +138,4 @@ const proxy = {
   },
 };
 
-export default format(noProxy ? {} : delay(proxy, 0));
+export default format(noProxy ? {} : delay(proxy, 500));
