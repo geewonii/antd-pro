@@ -6,6 +6,7 @@
   position: relative;
   padding-left: (@menu-collapsed-width - 32px) / 2;
   transition: all .3s;
+  overflow: hidden;
   img {
     display: inline-block;
     vertical-align: middle;
@@ -42,21 +43,21 @@
 
 @media screen and (min-width: 769px) {
   .logo {
-    height: 128px;
-    line-height: 128px;
+    height: 80px;
+    line-height: 80px;
     width: 360px;
     padding: 0;
     img {
-      height: 60px;
+      height: 50px;
     }
   }
   .Header {
-    height: 128px;
+    height: 80px;
     box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
     position: relative;
     z-index: 10;
     display: flex;
-    margin-top: 64px;
+    margin-top: 50px;
     .Menu {
       display: flex;
       flex: 1;

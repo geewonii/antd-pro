@@ -182,8 +182,8 @@ class BasicLayout extends React.PureComponent {
           onCollapse={this.handleMenuCollapse}
         />
         <Layout>
-          <Content style={{ margin: '24px 24px 0', height: '100%' }}>
-            <div style={{ minHeight: 'calc(100vh - 300px)' }}>
+          <Content style={{ height: '100%' }}>
+            <div style={{ minHeight: 'calc(100vh - 300px)', maxWidth: '1440px', margin: 'auto' }}>
               <Switch>
                 {
                   redirectData.map(item =>
