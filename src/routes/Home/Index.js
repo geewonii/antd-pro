@@ -180,13 +180,32 @@ export default class Index extends Component {
       </div>
     ) : null;
 
+    const ItemBidColumnsList = list[0] ? (
+      <div>
+        {list[0].ItemBidColumnsList.map((item) => {
+          return (
+            <ItemBidColumns
+              key={item.id}
+              title={item.title}
+              links={item.links}
+              tips={item.tips}
+              cover={item.cover}
+              childrens={item.children}
+              bgtop={item.bgtop}
+              bgbottom={item.bgbottom}
+            />
+          );
+        })}
+      </div>
+    ) : null;
+
     return (
       <div className={styles.carousels}>
         {CarouselList}
         {ItemNotice}
         {ItemBidList}
+        {ItemBidColumnsList}
         {alreadyList}
-        <ItemBidColumns />
       </div>
     );
   }
