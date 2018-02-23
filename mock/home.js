@@ -33,7 +33,7 @@ const getHomeData = [
         id: '3',
         links: '/',
         title: '专业的实力团队',
-        description: '高管团队出身于国有银行 专业专注 实力雄厚',
+        description: '高管团队出身于国有银行 专业专注',
         href: 'http://geewonii.top/phonelee/image/gonggao1.png',
         num1: '4.633',
         num2: 40,

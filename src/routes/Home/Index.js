@@ -96,9 +96,9 @@ export default class Index extends Component {
             dataSource={list[0].ItemNoticeList.children}
             renderItem={item => (
               <List.Item>
-                <Link to="/">
+                <Link to="/credit">
                   <List.Item.Meta
-                    avatar={<Avatar shape="square" size="large" style={{ backgroundColor: '#fff' }} src={item.href} />}
+                    avatar={<Avatar shape="square" size="large" style={{ backgroundColor: '#fff', width: '48px', height: '48px' }} src={item.href} />}
                     title={item.title}
                     description={item.description}
                   />
