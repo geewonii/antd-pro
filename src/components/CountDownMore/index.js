@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import Flipper from './Flipper';
-// import schema from './schema.js';
+import schema from './schema.js';
 import styles from './index.less';
 
 export default class Countdown extends PureComponent {
-  state = {
-    diff: this.getDiffObject(),
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = { diff: this.getDiffObject() };
+  }
 
   componentDidMount() {
     this.interval = window.setInterval(() => this.updateTime(), 1000);
@@ -84,6 +86,6 @@ export default class Countdown extends PureComponent {
   }
 }
 
-// Countdown.propTypes = schema.types;
+Countdown.propTypes = schema.types;
 
-// Countdown.defaultProps = schema.defaults;
+Countdown.defaultProps = schema.defaults;

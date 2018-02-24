@@ -1,4 +1,4 @@
-import { PropTypes as types } from 'react';
+import { PropTypes as types } from 'prop-types';
 
 export default {
   types: {

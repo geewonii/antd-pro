@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import classNames from 'classnames';
-// import schema from './schema.js';
+import schema from './schema.js';
 import styles from './index.less';
 
 export default class Flipper extends PureComponent {
@@ -71,6 +71,6 @@ export default class Flipper extends PureComponent {
   }
 }
 
-// Flipper.propTypes = schema.types;
+Flipper.propTypes = schema.types;
 
-// Flipper.defaultProps = schema.defaults;
+Flipper.defaultProps = schema.defaults;
