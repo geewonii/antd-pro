@@ -1,0 +1,96 @@
+@import "~antd/lib/style/themes/default.less";
+.cards {
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+  margin: 2px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.card {
+  position: absolute;
+  text-align: center;
+  perspective: 500px;
+  color: #fff;
+  z-index: 1;
+  width: 100%;
+}
+
+.card.now {
+  z-index: 2;
+}
+
+.card:last-child {
+  z-index: 0;
+}
+
+.card.now + .card {
+  z-index: 3;
+}
+
+.card:after {
+  content: ' ';
+  position: absolute;
+  display: block;
+  top: 100%;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  transition: none;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.now:after {
+  transition: all .5s;
+}
+
+.now + .card .sides,
+.card:last-child .sides {
+  transform: rotateX(-180deg);
+  transition: all 1s;
+  transform-style: preserve-3d;
+}
+
+.sides {
+  position: relative;
+  transform-origin: bottom;
+}
+
+.sideNum {
+  height: 200%;
+  line-height: 1.1;
+  vertical-align: middle;
+  text-align: center;
+  box-sizing: border-box;
+  text-indent: 5%;
+}
+
+.back .sideNum {
+  margin-top: -150px;
+  text-shadow: 0 1px 1px @primary-color;
+}
+
+.front .sideNum {
+  text-shadow: 0 -1px 1px @primary-color;
+}
+
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  background-color: @primary-color;
+}
+
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  border-radius: 5px;
+}
+
+.back {
+  transform: rotateX(180deg);
+  border-radius: 5px;
+}

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import { Card, Row, Col } from 'antd';
+import moment from 'moment';
 import styles from './index.less';
+import CountDownMore from '../../components/CountDownMore';
 
 @connect(({ global, credit, loading }) => ({
   global,
@@ -27,14 +29,17 @@ export default class Index extends Component {
         </div>
         <div className={styles.content}>
           <Row>
-            <Col lg={15}>
+            <Col lg={16} style={{ paddingRight: '20px' }}>
               <Card>
                 d
               </Card>
             </Col>
-            <Col lg={8} offset={1}>
+            <Col lg={8}>
               <Card>
-                d
+                <CountDownMore
+                  stop={new Date(moment().add('1', 'days').format('YYYY/MM/DD HH:mm:ss'))}
+                  size={36}
+                />
               </Card>
             </Col>
           </Row>

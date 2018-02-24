@@ -4,15 +4,12 @@ function fixedZero(val) {
   return val * 1 < 10 ? `0${val}` : val;
 }
 
-class CountDown extends Component {
+export default class CountDown extends Component {
   constructor(props) {
     super(props);
 
     const { lastTime } = this.initTime(props);
-
-    this.state = {
-      lastTime,
-    };
+    this.state = { lastTime };
   }
 
   componentDidMount() {
@@ -104,5 +101,3 @@ class CountDown extends Component {
     return (<span {...rest}>{result}</span>);
   }
 }
-
-export default CountDown;
