@@ -42,7 +42,7 @@ export default class Flipper extends PureComponent {
     return (
       <div className={styles.cards}>
         {this.getRange(this.props.now).map((val, i) => {
-          const card = classNames(styles.card, styles.now);
+          const card = classNames(styles.card, val === this.props.now ? styles.now : '');
           const idx = i;
           return (
             <div

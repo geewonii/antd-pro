@@ -1,14 +1,15 @@
 import mockjs from 'mockjs';
 import { getRule, postRule } from './mock/rule';
 import { getActivities, getNotice, getFakeList } from './mock/api';
-import { getGlobalFooterData } from './mock/global';
-import { getHomeData } from './mock/home';
 import { getFakeChartData } from './mock/chart';
 import { imgMap } from './mock/utils';
 import { getProfileBasicData } from './mock/profile';
 import { getProfileAdvancedData } from './mock/profile';
 import { getNotices } from './mock/notices';
 import { format, delay } from 'roadhog-api-doc';
+import { getGlobalFooterData } from './mock/global';
+import { getHomeData } from './mock/home';
+import { getCredit } from './mock/credit';
 
 // 是否禁用代理
 const noProxy = process.env.NO_PROXY === 'true';
@@ -18,6 +19,7 @@ const proxy = {
   // 支持值为 Object 和 Array
   'GET /api/home/data': getHomeData,
   'GET /api/globalFooterData': getGlobalFooterData,
+  'GET /api/credit': getCredit,
   'GET /api/currentUser': {
     $desc: "获取当前用户接口",
     $params: {

@@ -19,9 +19,11 @@ export default class Countdown extends PureComponent {
   }
 
   getDiffObject() {
-    let future = this.props.stop.getTime();
-    if (future - (new Date()).getTime() < 0) {
-      future = (24 * 60 * 60 * 1000) + future;
+    const { stop, onEnd } = this.props;
+    const future = stop.getTime();
+    if (future - (new Date()).getTime() <= 0) {
+      if (onEnd) onEnd();
+      window.clearInterval(this.interval);
     }
     const ms = Math.abs(future - (new Date()).getTime());
 

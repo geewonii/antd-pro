@@ -9,6 +9,13 @@ export async function globalFooterFunc() {
   return request('/api/globalFooterData');
 }
 
+export async function creditData(params) {
+  return request(`/api/credit?${stringify(params)}`);
+}
+
+/*
+  ***********************
+*/
 
 export async function queryProjectNotice() {
   return request('/api/project/notice');

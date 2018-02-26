@@ -1,4 +1,4 @@
-import { homeData } from '../services/api';
+import { creditData } from '../services/api';
 
 export default {
   namespace: 'credit',
@@ -8,17 +8,17 @@ export default {
   },
 
   effects: {
-    *fetch(_, { call, put }) {
-      const data = yield call(homeData);
+    *fetch({ payload }, { call, put }) {
+      const data = yield call(creditData, payload);
       yield put({
-        type: 'homeIndexList',
-        payload: Array.isArray(data) ? data : [],
+        type: 'creditList',
+        payload: data,
       });
     },
   },
 
   reducers: {
-    homeIndexList(state, action) {
+    creditList(state, action) {
       return {
         ...state,
         list: action.payload,
