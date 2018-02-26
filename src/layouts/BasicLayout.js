@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Layout, message } from 'antd';
 import DocumentTitle from 'react-document-title';
@@ -28,8 +28,8 @@ const getRedirect = (item) => {
   if (item && item.children) {
     if (item.children[0] && item.children[0].path) {
       redirectData.push({
-        from: `/${item.path}`,
-        to: `/${item.children[0].path}`,
+        from: `${item.path}`,
+        to: `${item.children[0].path}`,
       });
       item.children.forEach((children) => {
         getRedirect(children);
@@ -65,7 +65,7 @@ enquireScreen((b) => {
   isMobile = b;
 });
 
-class BasicLayout extends React.PureComponent {
+class BasicLayout extends PureComponent {
   static childContextTypes = {
     location: PropTypes.object,
     breadcrumbNameMap: PropTypes.object,
