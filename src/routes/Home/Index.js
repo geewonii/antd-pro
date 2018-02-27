@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import { Carousel, List, Icon, Card, Avatar } from 'antd';
-import { WaterWave } from '../../components/Charts';
-import ItemBid from '../../components/ItemBid';
-import ItemBidColumns from '../../components/ItemBidColumns';
+// import { WaterWave } from '../../components/Charts';
+// import ItemBid from '../../components/ItemBid';
+// import ItemBidColumns from '../../components/ItemBidColumns';
 import styles from './index.less';
 
 @connect(({ global, home, loading }) => ({
@@ -16,21 +16,20 @@ export default class Index extends Component {
   static state = {}
   componentDidMount() {
     this.props.dispatch({
-      type: 'home/fetch',
+      type: 'home/homeInfoFetch',
     });
   }
   render() {
     const { global: { isMobile }, home: { list = [] }, loading } = this.props;
-
     // Carousel api: https://github.com/akiran/react-slick
     const settings = {
       autoplay: true,
-      adaptiveHeight: true,
       autoplaySpeed: 3000,
       speed: 300,
       slidesToShow: 1,
-      // lazyLoad: true,
-      // slide: 'div',
+      lazyLoad: true,
+      slide: 'div',
+      // adaptiveHeight: true,
       // vertical: true,
       // dots: true,
       // dotsClass: 'slick-dots',
@@ -43,12 +42,12 @@ export default class Index extends Component {
 
     const CarouselList = list[0] ? (
       <div>
-        <Carousel {...settings}>
+        <Carousel {...settings} loading={loading}>
           {
-            list[0].carouselList.map(item => (
-              <div key={item.id}>
-                <Link to={item.links}>
-                  <img src={isMobile ? item.imgMobile : item.imgPC} alt={item.title} />
+            list[0].map(item => (
+              <div key={item.Id}>
+                <Link to={item.Url}>
+                  <img src={isMobile ? item.image_Mobile : item.image_url} alt={item.Title} />
                 </Link>
               </div>
             ))
@@ -70,30 +69,82 @@ export default class Index extends Component {
       );
     };
 
-    const ItemBidHeader = (todo) => {
-      return (
-        <div className={styles.header}>
-          <div className={styles.title}>
-            <h4>{todo.title}</h4>
-            <span>{todo.subhead}</span>
-          </div>
-          <Link to={todo.moreLink || '/'} className={styles.more}>
-            更多项目 <Icon type="right" />
-          </Link>
-        </div>
-      );
+    // const ItemBidHeader = (todo) => {
+    //   return (
+    //     <div className={styles.header}>
+    //       <div className={styles.title}>
+    //         <h4>{todo.title}</h4>
+    //         <span>{todo.subhead}</span>
+    //       </div>
+    //       <Link to={todo.moreLink || '/'} className={styles.more}>
+    //         更多项目 <Icon type="right" />
+    //       </Link>
+    //     </div>
+    //   );
+    // };
+
+    const ItemNoticeList = {
+      Id: '1',
+      title: '系统公告',
+      subhead: '号外号外，关于丰利金服春节不放假通知。',
+      moreLink: '/404',
+      children: [{
+        id: '3',
+        links: '/',
+        title: '专业的实力团队',
+        description: '高管团队出身于国有银行 专业专注',
+        href: 'http://geewonii.top/phonelee/image/gonggao1.png',
+        num1: '4.633',
+        num2: 40,
+        date: '2018-12-25T02:21',
+        annual: 24.5,
+        month: 12,
+      }, {
+        id: '4',
+        links: '/',
+        title: '私人专属财富顾问',
+        description: '1对1 交流 全面沟通 星级服务 极致体验',
+        href: 'http://geewonii.top/phonelee/image/gonggao3.png',
+        num1: '4.633',
+        num2: 40,
+        date: '2018-12-25T02:21',
+        annual: 24.5,
+        month: 12,
+      }, {
+        id: '4',
+        links: '/',
+        title: '全方位风控保障',
+        description: '严审客户资质 全面风控把控',
+        href: 'http://geewonii.top/phonelee/image/gonggao4.png',
+        num1: '4.633',
+        num2: 40,
+        date: '2018-12-25T02:21',
+        annual: 24.5,
+        month: 12,
+      }, {
+        id: '4',
+        links: '/',
+        title: '透明规范合规体系',
+        description: '响应号召 充分披露 合规合法 规范透明',
+        href: 'http://geewonii.top/phonelee/image/gonggao2.png',
+        num1: '4.633',
+        num2: 40,
+        date: '2018-12-25T02:21',
+        annual: 24.5,
+        month: 12,
+      }],
     };
 
     const ItemNotice = list[0] ? (
       <div className={styles.project}>
         <Card
-          title={ItemNoticeHeader(list[0].ItemNoticeList)}
+          title={ItemNoticeHeader(ItemNoticeList)}
           loading={loading}
           extra={<Link to="/" className={styles.more}>更多公告 <Icon type="right" /></Link>}
         >
           <List
             grid={{ gutter: 24, xs: 1, sm: 2, md: 4 }}
-            dataSource={list[0].ItemNoticeList.children}
+            dataSource={ItemNoticeList.children}
             renderItem={item => (
               <List.Item>
                 <Link to="/credit">
@@ -103,6 +154,11 @@ export default class Index extends Component {
                     description={item.description}
                   />
                 </Link>
+                <div>
+                  <List.Item.Meta
+                    title={item.title}
+                  />
+                </div>
               </List.Item>
             )}
           />
@@ -110,102 +166,107 @@ export default class Index extends Component {
       </div>
     ) : null;
 
-    const ItemBidList = list[0] ? (
-      <div>
-        {
-          list[0].ItemBidList.map((todo) => {
-            return (
-              <div key={todo.parentId} className={styles.project}>
-                <List
-                  rowKey="id"
-                  loading={loading}
-                  split={false}
-                  header={ItemBidHeader(todo)}
-                  grid={{ gutter: 24, xl: 4, lg: 2, md: 2, sm: 2, xs: 1 }}
-                  dataSource={todo.children}
-                  renderItem={item => (
-                    <List.Item>
-                      <ItemBid
-                        links={item.links}
-                        cover={item.cover}
-                        title={item.title}
-                        description={item.description}
-                        percent={item.percent}
-                        date={item.date}
-                        annual={item.annual}
-                        month={item.month}
-                        num1={item.num1}
-                        num2={item.num2}
-                      />
-                    </List.Item>
-                  )}
-                />
-              </div>
-            );
-          })
-        }
-      </div>
-    ) : null;
+    // const ItemBidList = list[0] ? (
+    //   <div>
+    //     {
+    //       list[0].ItemBidList.map((todo) => {
+    //         return (
+    //           <div key={todo.parentId} className={styles.project}>
+    //             <List
+    //               rowKey="id"
+    //               loading={loading}
+    //               split={false}
+    //               header={ItemBidHeader(todo)}
+    //               grid={{ gutter: 24, xl: 4, lg: 2, md: 2, sm: 2, xs: 1 }}
+    //               dataSource={todo.children}
+    //               renderItem={item => (
+    //                 <List.Item>
+    //                   <ItemBid
+    //                     links={item.links}
+    //                     cover={item.cover}
+    //                     title={item.title}
+    //                     description={item.description}
+    //                     percent={item.percent}
+    //                     date={item.date}
+    //                     annual={item.annual}
+    //                     month={item.month}
+    //                     num1={item.num1}
+    //                     num2={item.num2}
+    //                   />
+    //                 </List.Item>
+    //               )}
+    //             />
+    //           </div>
+    //         );
+    //       })
+    //     }
+    //   </div>
+    // ) : null;
 
-    const alreadyList = list[0] ? (
-      <div>
-        <List
-          rowKey="id"
-          loading={loading}
-          split={false}
-          header={
-            <div className={styles.title}>
-              <h4>惠投资</h4>
-              <span>收益最重要</span>
-            </div>
-          }
-          grid={{ gutter: 24, lg: 4, md: 3, sm: 2, xs: 1 }}
-          dataSource={list[0].ItemBidList}
-          renderItem={item => (
-            <List.Item>
-              <Link to="/">
-                <Card title={item.title} bodyStyle={{ textAlign: 'center', fontSize: 0 }} bordered={false} hoverable>
-                  <WaterWave
-                    height={161}
-                    title="当前墨迹进度"
-                    percent={34}
-                    color="#f60"
-                    contColor="#f60"
-                  />
-                </Card>
-              </Link>
-            </List.Item>
-          )}
-        />
-      </div>
-    ) : null;
+    // const alreadyList = list[0] ? (
+    //   <div>
+    //     <List
+    //       rowKey="id"
+    //       loading={loading}
+    //       split={false}
+    //       header={
+    //         <div className={styles.title}>
+    //           <h4>惠投资</h4>
+    //           <span>收益最重要</span>
+    //         </div>
+    //       }
+    //       grid={{ gutter: 24, lg: 4, md: 3, sm: 2, xs: 1 }}
+    //       dataSource={list[0].ItemBidList}
+    //       renderItem={item => (
+    //         <List.Item>
+    //           <Link to="/">
+    //             <Card
+    //               title={item.title}
+    //               bodyStyle={{ textAlign: 'center', fontSize: 0 }}
+    //               bordered={false}
+    //               hoverable
+    //             >
+    //               <WaterWave
+    //                 height={161}
+    //                 title="当前墨迹进度"
+    //                 percent={34}
+    //                 color="#f60"
+    //                 contColor="#f60"
+    //               />
+    //             </Card>
+    //           </Link>
+    //         </List.Item>
+    //       )}
+    //     />
+    //   </div>
+    // ) : null;
 
-    const ItemBidColumnsList = list[0] ? (
-      <div>
-        {list[0].ItemBidColumnsList.map((item) => {
-          return (
-            <ItemBidColumns
-              key={item.id}
-              title={item.title}
-              links={item.links}
-              tips={item.tips}
-              cover={item.cover}
-              childrens={item.children}
-              bgtop={item.bgtop}
-              bgbottom={item.bgbottom}
-            />
-          );
-        })}
-      </div>
-    ) : null;
+    // const ItemBidColumnsList = list[0] ? (
+    //   <div>
+    //     {list[0].ItemBidColumnsList.map((item) => {
+    //       return (
+    //         <ItemBidColumns
+    //           key={item.id}
+    //           title={item.title}
+    //           links={item.links}
+    //           tips={item.tips}
+    //           cover={item.cover}
+    //           childrens={item.children}
+    //           bgtop={item.bgtop}
+    //           bgbottom={item.bgbottom}
+    //         />
+    //       );
+    //     })}
+    //   </div>
+    // ) : null;
 
     return (
       <div className={styles.carousels}>
         {CarouselList}
         {ItemNotice}
-        {ItemBidList}
+        {/* {ItemBidList}
         {ItemBidColumnsList}
-        {alreadyList}
+        {alreadyList} */}
       </div>
     );
   }

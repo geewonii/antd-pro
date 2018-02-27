@@ -1,4 +1,5 @@
 import { queryNotices, globalFooterFunc } from '../services/api';
+import Packet from '../utils/Packet';
 
 export default {
   namespace: 'global',
@@ -32,7 +33,10 @@ export default {
       });
     },
     *globalFooterData({ payload }, { put, call }) {
-      const globalFooterData = yield call(globalFooterFunc);
+      const send = new Packet();
+      const res = yield call(globalFooterFunc, send);
+      const globalFooterData = JSON.parse(res);
+      console.log(globalFooterData);
       yield put({
         type: 'screenIsMobile',
         payload: payload.isMobile,
@@ -63,10 +67,18 @@ export default {
         notices: state.notices.filter(item => item.type !== payload),
       };
     },
+    screenIsMobile(state, { payload }) {
+      return {
+        ...state,
+        isMobile: payload,
+
+      };
+    },
     globalFooter(state, { payload }) {
       return {
         ...state,
         globalFooterData: payload,
+
       };
     },
   },

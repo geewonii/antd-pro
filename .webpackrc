@@ -18,5 +18,11 @@
   },
   "publicPath": "/",
   "disableDynamicImport": true,
-  "hash": true
+  "hash": true,
+  "proxy": {
+    "/api/v1/*": {
+      "target": "https://api.phonelee.com",
+      "changeOrigin": true
+    }
+  }
 }

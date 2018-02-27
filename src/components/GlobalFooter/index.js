@@ -44,7 +44,7 @@ export default ({ className, globalFooterData }) => {
       <Row gutter={24} className={styles.info}>
         <Col {...infoProps}>
           {
-            globalFooterData && (
+            globalFooterData[0] && (
               <div className={styles.links}>
                 {globalFooterData.links.map(todo => (
                   <div key={todo.key}>
@@ -80,7 +80,7 @@ export default ({ className, globalFooterData }) => {
         <Col {...infoProps}>
           <div className={styles.words}>
             {
-              globalFooterData && globalFooterData.words.map(todo => (
+              globalFooterData[0] && globalFooterData.words.map(todo => (
                 <div key={todo.key}>
                   <Icon type={todo.icon} />
                   &nbsp;{todo.title}
@@ -94,7 +94,7 @@ export default ({ className, globalFooterData }) => {
         </Col>
         <Col {...codeProps} className={styles.code}>
           {
-            globalFooterData && globalFooterData.qrCode.map(todo => (
+            globalFooterData[0] && globalFooterData.qrCode.map(todo => (
               <Col span={11} key={todo.key}>
                 <img src={todo.imgUrl} alt={todo.title} />
                 <p>{todo.title}</p>

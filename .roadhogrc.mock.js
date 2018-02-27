@@ -16,9 +16,12 @@ const noProxy = process.env.NO_PROXY === 'true';
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 const proxy = {
   // 支持值为 Object 和 Array
-  'GET /api/home/data': getHomeData,
+  'POST /api/v1/homes/post/query_home_info': getHomeData,
   'GET /api/globalFooterData': getGlobalFooterData,
   'GET /api/credit': getCredit,
+  'POST /api/v1/homes/post/query_home_info': (req, res) => {
+    res.send({ status: 'ok' });
+  },
   'GET /api/currentUser': {
     $desc: "获取当前用户接口",
     $params: {
@@ -139,4 +142,4 @@ const proxy = {
   },
 };
 
-export default format(noProxy ? {} : delay(proxy, 500));
+export default format(noProxy ? { "/*": "https://api.phonelee.com" } : delay(proxy, 500));

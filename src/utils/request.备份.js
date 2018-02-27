@@ -2,7 +2,6 @@ import fetch from 'dva/fetch';
 import { notification } from 'antd';
 import { routerRedux } from 'dva/router';
 import store from '../index';
-// import Packet from './Packet';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -72,19 +71,8 @@ export default function request(url, options) {
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text();
       }
-      // return response.text();
       return response.json();
     })
-    // .then((responseText) => {
-    //   const recv = new Packet();
-    //   recv.ReadFrom(JSON.parse(responseText));
-    //   if (parseInt(recv.Code, 10) === 0) {
-    //     const error = new Error();
-    //     error.res = recv.Message;
-    //     throw error;
-    //   }
-    //   return recv;
-    // })
     .catch((e) => {
       const { dispatch } = store;
       const status = e.name;

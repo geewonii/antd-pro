@@ -154,7 +154,8 @@ class BasicLayout extends PureComponent {
   }
   render() {
     const {
-      currentUser, collapsed, fetchingNotices, notices, routerData, match, location,
+      currentUser, collapsed, fetchingNotices, notices,
+      routerData, match, location, globalFooterData = globalFooterData || [],
     } = this.props;
     const bashRedirect = this.getBashRedirect();
     const layoutPc = (
@@ -208,7 +209,7 @@ class BasicLayout extends PureComponent {
                 <Route render={NotFound} />
               </Switch>
             </div>
-            <GlobalFooter globalFooterData={this.props.globalFooterData} />
+            <GlobalFooter globalFooterData={globalFooterData} />
           </Content>
         </Layout>
       </Layout>
@@ -240,7 +241,7 @@ class BasicLayout extends PureComponent {
             onMenuClick={this.handleMenuClick}
             onNoticeVisibleChange={this.handleNoticeVisibleChange}
           />
-          <Content style={{ margin: '88px 24px 0', height: '100%' }}>
+          <Content style={{ margin: '50px 24px 0', height: '100%' }}>
             <div style={{ minHeight: 'calc(100vh - 180px)' }}>
               <Switch>
                 {
@@ -266,7 +267,7 @@ class BasicLayout extends PureComponent {
                 <Route render={NotFound} />
               </Switch>
             </div>
-            <GlobalFooter globalFooterData={this.props.globalFooterData} />
+            <GlobalFooter globalFooterData={globalFooterData} />
           </Content>
         </Layout>
       </Layout>

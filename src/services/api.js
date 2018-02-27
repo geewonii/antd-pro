@@ -1,12 +1,18 @@
 import { stringify } from 'qs';
 import request from '../utils/request';
 
-export async function homeData() {
-  return request('/api/home/data');
+export async function homeData(params) {
+  return request('/api/v1/homes/post/query_home_info', {
+    method: 'POST',
+    body: params || {},
+  });
 }
 
-export async function globalFooterFunc() {
-  return request('/api/globalFooterData');
+export async function globalFooterFunc(params) {
+  return request('/api/v1/homes/post/query_home_footer_info', {
+    method: 'POST',
+    body: params || {},
+  });
 }
 
 export async function creditData(params) {
