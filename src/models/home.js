@@ -10,23 +10,23 @@ export default {
 
   effects: {
     *homeInfoFetch(_, { call, put }) {
-      const send = new Packet();
-      const res = yield call(homeData, send);
-
       const recv = new Packet();
+      const res = yield call(homeData, recv);
       recv.ReadFrom(res);
+
       const swiperImageList = [];
-      const imgPc = recv.DatasetToObjectList(0);
-      const imgMobile = recv.DatasetToObjectList(1);
-      [...imgPc].forEach((todo, i) => {
-        const obj = { ...todo, image_Mobile: imgMobile[i].image_url };
+      [...recv.DatasetToObjectList(0)].forEach((todo, i) => {
+        const obj = {
+          ...todo,
+          image_Mobile: recv.DatasetToObjectList(1)[i].image_url,
+        };
         swiperImageList.push(obj);
       });
-      console.log(recv);
-      const ItemNoticeList = [
-        recv.DatasetToObjectList(2)[0],
-      ];
 
+      const ItemNoticeList = {
+        operate: recv.DatasetToObjectList(8)[0],
+      };
+      console.log(recv);
       // export data
       const getHomeData = [
         swiperImageList,
