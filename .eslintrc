@@ -55,7 +55,7 @@
     "no-restricted-globals": [0],
     "require-yield": [1],
     "compat/compat": "error",
-    "linebreak-style": ["error", "windows"]
+    // "linebreak-style": ["error", "windows"]
   },
   "parserOptions": {
     "ecmaFeatures": {
