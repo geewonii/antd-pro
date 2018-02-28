@@ -4,8 +4,8 @@ import { Link } from 'dva/router';
 import { Carousel, List, Icon, Card, Avatar, Row, Col } from 'antd';
 import { numberFormat } from '../../utils/utils';
 // import { WaterWave } from '../../components/Charts';
-// import ItemBid from '../../components/ItemBid';
-// import ItemBidColumns from '../../components/ItemBidColumns';
+import ItemBid from '../../components/ItemBid';
+import ItemBidColumns from '../../components/ItemBidColumns';
 import styles from './index.less';
 
 @connect(({ global, home, loading }) => ({
@@ -125,68 +125,120 @@ export default class Index extends Component {
             )}
           />
           <Row className={styles.system}>
-            <Col xs={24} sm={12} md={12} lg={6} >
+            <Col xs={0} sm={12} md={12} lg={6} >
               平台运营<span> {Math.floor(OperatingDays / 365)}</span> 年
               <span> {Math.floor((OperatingDays % 365) / 31)}</span> 个月
               <span> {Math.floor(OperatingDays % 365 % 31)}</span> 天
             </Col>
-            <Col xs={24} sm={12} md={12} lg={6} >累计注册人数 <span> {AllGodNum}</span> 人</Col>
-            <Col xs={24} sm={12} md={12} lg={6} >为投资人赚取 <span> {`${numberFormat(EarnInterest, 2, '.', ',')}`}</span> 元</Col>
-            <Col xs={24} sm={12} md={12} lg={6} >累计交易金额 <span> {`${numberFormat(TransactionAmount, 2, '.', ',')}`}</span> 元</Col>
+            <Col xs={0} sm={12} md={12} lg={6} >累计注册人数 <span> {AllGodNum}</span> 人</Col>
+            <Col xs={0} sm={12} md={12} lg={6} >为投资人赚取 <span> {`${numberFormat(EarnInterest, 2, '.', ',')}`}</span> 元</Col>
+            <Col xs={0} sm={12} md={12} lg={6} >累计交易金额 <span> {`${numberFormat(TransactionAmount, 2, '.', ',')}`}</span> 元</Col>
           </Row>
         </Card>
       </div>
     ) : null;
 
-    // const ItemBidHeader = (todo) => {
-    //   return (
-    //     <div className={styles.header}>
-    //       <div className={styles.title}>
-    //         <h4>{todo.title}</h4>
-    //         <span>{todo.subhead}</span>
-    //       </div>
-    //       <Link to={todo.moreLink || '/'} className={styles.more}>
-    //         更多项目 <Icon type="right" />
-    //       </Link>
-    //     </div>
-    //   );
-    // };
-    // const ItemBidList = list[0] ? (
-    //   <div>
-    //     {
-    //       list[0].ItemBidList.map((todo) => {
-    //         return (
-    //           <div key={todo.parentId} className={styles.project}>
-    //             <List
-    //               rowKey="id"
-    //               loading={loading}
-    //               split={false}
-    //               header={ItemBidHeader(todo)}
-    //               grid={{ gutter: 24, xl: 4, lg: 2, md: 2, sm: 2, xs: 1 }}
-    //               dataSource={todo.children}
-    //               renderItem={item => (
-    //                 <List.Item>
-    //                   <ItemBid
-    //                     links={item.links}
-    //                     cover={item.cover}
-    //                     title={item.title}
-    //                     description={item.description}
-    //                     percent={item.percent}
-    //                     date={item.date}
-    //                     annual={item.annual}
-    //                     month={item.month}
-    //                     num1={item.num1}
-    //                     num2={item.num2}
-    //                   />
-    //                 </List.Item>
-    //               )}
-    //             />
-    //           </div>
-    //         );
-    //       })
-    //     }
-    //   </div>
-    // ) : null;
+    const ItemBidHeader = (todo) => {
+      return (
+        <div className={styles.header}>
+          <div className={styles.title}>
+            <h4>{todo.title}</h4>
+            <span>{todo.subhead}</span>
+          </div>
+          <Link to={todo.moreLink || '/'} className={styles.more}>
+            更多项目 <Icon type="right" />
+          </Link>
+        </div>
+      );
+    };
+    const ItemBidData = [{
+      parentId: '1',
+      title: '汇理财 ',
+      subhead: '省心最重要 ——懒人式理财 智能投标 安全安心',
+      moreLink: '/',
+      children: [{
+        id: '1',
+        links: '/',
+        cover: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
+        title: '丰利财',
+        description: '内容内容内容内容',
+        num1: 30,
+        num2: 40,
+        date: '2018-12-25T02:21',
+        annual: 24.5,
+        month: 12,
+      }, {
+        id: '2',
+        links: '/',
+        cover: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
+        title: '丰利富',
+        description: [{
+          id: 'description1',
+          text: '等额本息',
+          tips: '等额本息，是指一种贷款的还款方式。等额本息是在还款期内，每月偿还同等数额的贷款(包括本金和利息)。它和等额本金是不一样的概念，虽然刚开始还款时每月还款额可能会低于等额本金还款方式的额度，但是最终所还利息会高于等额本金还款方式，该方式经常被银行使用。',
+        }],
+        num1: 30,
+        num2: 40,
+        date: '2018-12-25T02:21',
+        annual: 24.5,
+        month: 12,
+      }, {
+        id: '3',
+        links: '/',
+        cover: 'https://gw.alipayobjects.com/zos/rmsportal/iZBVOIhGJiAnhplqjvZW.png',
+        title: '丰利盈',
+        description: [{
+          id: 'description1',
+          text: '等额本息',
+          tips: '等额本息，是指一种贷款的还款方式。等额本息是在还款期内，每月偿还同等数额的贷款(包括本金和利息)。它和等额本金是不一样的概念，虽然刚开始还款时每月还款额可能会低于等额本金还款方式的额度，但是最终所还利息会高于等额本金还款方式，该方式经常被银行使用。',
+        }, {
+          id: 'description2',
+          text: '自担风险',
+          tips: 'tips',
+        }],
+        num1: '4.633',
+        num2: 40,
+        date: '2018-12-25T02:21',
+        annual: 24.5,
+        month: 12,
+      }],
+    }];
+    const ItemBidList = list[0] ? (
+      <div>
+        {
+          ItemBidData.map((todo) => {
+            return (
+              <div key={todo.parentId} className={styles.project}>
+                <List
+                  rowKey="id"
+                  loading={loading}
+                  split={false}
+                  header={ItemBidHeader(todo)}
+                  grid={{ gutter: 24, xl: 4, lg: 2, md: 2, sm: 2, xs: 1 }}
+                  dataSource={todo.children}
+                  renderItem={item => (
+                    <List.Item>
+                      <ItemBid
+                        links={item.links}
+                        cover={item.cover}
+                        title={item.title}
+                        description={item.description}
+                        percent={item.percent}
+                        date={item.date}
+                        annual={item.annual}
+                        month={item.month}
+                        num1={item.num1}
+                        num2={item.num2}
+                      />
+                    </List.Item>
+                  )}
+                />
+              </div>
+            );
+          })
+        }
+      </div>
+    ) : null;
 
     // const alreadyList = list[0] ? (
     //   <div>
@@ -225,33 +277,60 @@ export default class Index extends Component {
     //     />
     //   </div>
     // ) : null;
+    const ItemBidColumnsData = [{
+      id: '1',
+      links: '/',
+      title: '车贷宝',
+      tips: '贴心最重要',
+      bgtop: '#33BAFF',
+      bgbottom: '#62b4ff',
+      cover: 'https://www.phonelee.com/Content/new/newimages/jieyunxc.png',
+      children: [
+        '无抵押',
+        '无担保',
+        '分期购车更容易',
+      ],
+    }, {
+      id: '2',
+      links: '/',
+      title: '红薪宝',
+      tips: '全面最重要',
+      bgtop: '#74e03b',
+      bgbottom: '#affd60',
+      cover: 'https://www.phonelee.com/Content/new/newimages/hxbxc.png',
+      children: [
+        '企业"薪”时代',
+        '满足员工各种消费需求',
+        '给员工最暖的福利和诚挚的帮助',
+      ],
+    }];
 
-    // const ItemBidColumnsList = list[0] ? (
-    //   <div>
-    //     {list[0].ItemBidColumnsList.map((item) => {
-    //       return (
-    //         <ItemBidColumns
-    //           key={item.id}
-    //           title={item.title}
-    //           links={item.links}
-    //           tips={item.tips}
-    //           cover={item.cover}
-    //           childrens={item.children}
-    //           bgtop={item.bgtop}
-    //           bgbottom={item.bgbottom}
-    //         />
-    //       );
-    //     })}
-    //   </div>
-    // ) : null;
+    const ItemBidColumnsList = list[0] ? (
+      <div>
+        {ItemBidColumnsData.map((item) => {
+          return (
+            <ItemBidColumns
+              key={item.id}
+              title={item.title}
+              links={item.links}
+              tips={item.tips}
+              cover={item.cover}
+              childrens={item.children}
+              bgtop={item.bgtop}
+              bgbottom={item.bgbottom}
+            />
+          );
+        })}
+      </div>
+    ) : null;
 
     return (
       <div className={styles.carousels}>
         {CarouselList}
         {ItemNotice}
-        {/* {ItemBidList}
+        {ItemBidList}
         {ItemBidColumnsList}
-        {alreadyList} */}
+        {/* {alreadyList} */}
       </div>
     );
   }
