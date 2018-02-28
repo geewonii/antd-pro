@@ -184,7 +184,7 @@ class BasicLayout extends PureComponent {
         />
         <Layout>
           <Content style={{ height: '100%' }}>
-            <div style={{ minHeight: 'calc(100vh - 300px)', maxWidth: '1440px', margin: 'auto' }}>
+            <div style={{ minHeight: 'calc(100vh - 300px)', maxWidth: '1440px', margin: 'auto', padding: '0 24px' }}>
               <Switch>
                 {
                   redirectData.map(item =>

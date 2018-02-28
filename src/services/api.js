@@ -8,6 +8,13 @@ export async function homeData(params) {
   });
 }
 
+export async function systemData(params) {
+  return request('/api/v1/homes/post/query_home_bid_info', {
+    method: 'POST',
+    body: params || {},
+  });
+}
+
 export async function globalFooterFunc(params) {
   return request('/api/v1/homes/post/query_home_footer_info', {
     method: 'POST',

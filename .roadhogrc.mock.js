@@ -19,9 +19,6 @@ const proxy = {
   'POST /api/v1/homes/post/query_home_info': getHomeData,
   'GET /api/globalFooterData': getGlobalFooterData,
   'GET /api/credit': getCredit,
-  'POST /api/v1/homes/post/query_home_info': (req, res) => {
-    res.send({ status: 'ok' });
-  },
   'GET /api/currentUser': {
     $desc: "获取当前用户接口",
     $params: {
