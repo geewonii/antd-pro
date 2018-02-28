@@ -155,7 +155,7 @@ class BasicLayout extends PureComponent {
   render() {
     const {
       currentUser, collapsed, fetchingNotices, notices,
-      routerData, match, location, globalFooterData = globalFooterData || [],
+      routerData, match, location, globalFooterData,
     } = this.props;
     const bashRedirect = this.getBashRedirect();
     const layoutPc = (

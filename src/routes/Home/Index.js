@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import { Carousel, List, Icon, Card, Avatar } from 'antd';
+import { Carousel, List, Icon, Card, Avatar, Row, Col } from 'antd';
+import { numberFormat } from '../../utils/utils';
 // import { WaterWave } from '../../components/Charts';
 // import ItemBid from '../../components/ItemBid';
 // import ItemBidColumns from '../../components/ItemBidColumns';
@@ -39,7 +40,6 @@ export default class Index extends Component {
       // rtl: true,
       // centerMode: true,
     };
-
     const CarouselList = list[0] ? (
       <div>
         <Carousel {...settings} loading={loading}>
@@ -68,74 +68,41 @@ export default class Index extends Component {
         </div>
       );
     };
-
-    // const ItemBidHeader = (todo) => {
-    //   return (
-    //     <div className={styles.header}>
-    //       <div className={styles.title}>
-    //         <h4>{todo.title}</h4>
-    //         <span>{todo.subhead}</span>
-    //       </div>
-    //       <Link to={todo.moreLink || '/'} className={styles.more}>
-    //         更多项目 <Icon type="right" />
-    //       </Link>
-    //     </div>
-    //   );
-    // };
-
     const ItemNoticeList = {
       Id: '1',
       title: '系统公告',
       subhead: '号外号外，关于丰利金服春节不放假通知。',
       moreLink: '/404',
       children: [{
-        id: '3',
+        id: '1',
         links: '/',
         title: '专业的实力团队',
         description: '高管团队出身于国有银行 专业专注',
         href: 'http://geewonii.top/phonelee/image/gonggao1.png',
-        num1: '4.633',
-        num2: 40,
-        date: '2018-12-25T02:21',
-        annual: 24.5,
-        month: 12,
       }, {
-        id: '4',
+        id: '2',
         links: '/',
         title: '私人专属财富顾问',
         description: '1对1 交流 全面沟通 星级服务 极致体验',
         href: 'http://geewonii.top/phonelee/image/gonggao3.png',
-        num1: '4.633',
-        num2: 40,
-        date: '2018-12-25T02:21',
-        annual: 24.5,
-        month: 12,
       }, {
-        id: '4',
+        id: '3',
         links: '/',
         title: '全方位风控保障',
         description: '严审客户资质 全面风控把控',
         href: 'http://geewonii.top/phonelee/image/gonggao4.png',
-        num1: '4.633',
-        num2: 40,
-        date: '2018-12-25T02:21',
-        annual: 24.5,
-        month: 12,
       }, {
         id: '4',
         links: '/',
         title: '透明规范合规体系',
         description: '响应号召 充分披露 合规合法 规范透明',
         href: 'http://geewonii.top/phonelee/image/gonggao2.png',
-        num1: '4.633',
-        num2: 40,
-        date: '2018-12-25T02:21',
-        annual: 24.5,
-        month: 12,
       }],
     };
-
-    const ItemNotice = list[0] ? (
+    const { AllGodNum, EarnInterest, OperatingDays, TransactionAmount } = { ...(list[1] ? list[1][0]
+      : { AllGodNum: '329090', EarnInterest: '100000', OperatingDays: '973', TransactionAmount: '1898200000' }),
+    };
+    const ItemNotice = list[1] ? (
       <div className={styles.project}>
         <Card
           title={ItemNoticeHeader(ItemNoticeList)}
@@ -154,18 +121,36 @@ export default class Index extends Component {
                     description={item.description}
                   />
                 </Link>
-                <div>
-                  <List.Item.Meta
-                    title={item.title}
-                  />
-                </div>
               </List.Item>
             )}
           />
+          <Row className={styles.system}>
+            <Col xs={24} sm={12} md={12} lg={6} >
+              平台运营<span> {Math.floor(OperatingDays / 365)}</span> 年
+              <span> {Math.floor((OperatingDays % 365) / 31)}</span> 个月
+              <span> {Math.floor(OperatingDays % 365 % 31)}</span> 天
+            </Col>
+            <Col xs={24} sm={12} md={12} lg={6} >累计注册人数 <span> {AllGodNum}</span> 人</Col>
+            <Col xs={24} sm={12} md={12} lg={6} >为投资人赚取 <span> {`${numberFormat(EarnInterest, 2, '.', ',')}`}</span> 元</Col>
+            <Col xs={24} sm={12} md={12} lg={6} >累计交易金额 <span> {`${numberFormat(TransactionAmount, 2, '.', ',')}`}</span> 元</Col>
+          </Row>
         </Card>
       </div>
     ) : null;
 
+    // const ItemBidHeader = (todo) => {
+    //   return (
+    //     <div className={styles.header}>
+    //       <div className={styles.title}>
+    //         <h4>{todo.title}</h4>
+    //         <span>{todo.subhead}</span>
+    //       </div>
+    //       <Link to={todo.moreLink || '/'} className={styles.more}>
+    //         更多项目 <Icon type="right" />
+    //       </Link>
+    //     </div>
+    //   );
+    // };
     // const ItemBidList = list[0] ? (
     //   <div>
     //     {

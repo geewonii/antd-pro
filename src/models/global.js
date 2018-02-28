@@ -36,7 +36,6 @@ export default {
       const send = new Packet();
       const res = yield call(globalFooterFunc, send);
       const globalFooterData = JSON.parse(res);
-      console.log(globalFooterData);
       yield put({
         type: 'screenIsMobile',
         payload: payload.isMobile,
