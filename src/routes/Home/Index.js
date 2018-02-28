@@ -99,7 +99,7 @@ export default class Index extends Component {
         href: 'http://geewonii.top/phonelee/image/gonggao2.png',
       }],
     };
-    const { AllGodNum, EarnInterest, OperatingDays, TransactionAmount } = { ...(list[1] ? list[1][0]
+    const { AllGodNum, EarnInterest, OperatingDays, TransactionAmount } = { ...(list[8] ? list[8][0]
       : { AllGodNum: '329090', EarnInterest: '100000', OperatingDays: '973', TransactionAmount: '1898200000' }),
     };
     const ItemNotice = list[1] ? (

@@ -22,6 +22,7 @@ export default {
         const obj = { ...todo, image_Mobile: imgMobile[i].image_url };
         swiperImageList.push(obj);
       });
+      console.log(recv);
       const ItemNoticeList = [
         recv.DatasetToObjectList(2)[0],
       ];

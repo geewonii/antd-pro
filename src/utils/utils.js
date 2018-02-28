@@ -166,7 +166,7 @@ export function numberFormat(number, decimals, decPoint, thousandsSep) {
   * dec_point：小数点符号
   * thousands_sep：千分位符号
   * */
-  const numbers = number.toString().replace(/[^0-9+-Ee.]/g, '');
+  const numbers = String(number).replace(/[^0-9+-Ee.]/g, '');
   const n = !isFinite(+numbers) ? 0 : +numbers;
   const prec = !isFinite(+decimals) ? 0 : Math.abs(decimals);
   const sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep;
