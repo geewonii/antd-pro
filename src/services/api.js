@@ -7,19 +7,20 @@ export async function homeData(params) {
     body: params || {},
   });
 }
-
-export async function systemData(params) {
-  return request('/api/v1/homes/post/query_home_bid_info', {
+export async function creditListData(params) {
+  return request('/api/v1/credits/post/query_credit_list', {
     method: 'POST',
     body: params || {},
   });
 }
 
-export async function globalFooterFunc(params) {
-  return request('/api/v1/homes/post/query_home_footer_info', {
-    method: 'POST',
-    body: params || {},
-  });
+
+export async function homeStaticData() {
+  return request('https://api.phonelee.com/static/phonelee_home.json');
+}
+
+export async function globalFooterFunc() {
+  return request('https://api.phonelee.com/static/phonelee_footer.json');
 }
 
 export async function creditData(params) {

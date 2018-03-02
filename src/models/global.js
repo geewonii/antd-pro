@@ -35,14 +35,13 @@ export default {
     *globalFooterData({ payload }, { put, call }) {
       const send = new Packet();
       const res = yield call(globalFooterFunc, send);
-      const globalFooterData = JSON.parse(res);
       yield put({
         type: 'screenIsMobile',
         payload: payload.isMobile,
       });
       yield put({
         type: 'globalFooter',
-        payload: globalFooterData,
+        payload: res,
       });
     },
   },
