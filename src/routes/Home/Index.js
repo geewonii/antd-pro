@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import { Carousel, List, Icon, Card, Avatar, Row, Col, Spin } from 'antd';
+import { Button, Carousel, List, Icon, Card, Avatar, Row, Col, Spin, BackTop, Modal } from 'antd';
 import { numberFormat } from '../../utils/utils';
 // import { WaterWave } from '../../components/Charts';
 import ItemBid from '../../components/ItemBid';
@@ -14,18 +14,26 @@ import styles from './index.less';
   loading: loading.models.home,
 }))
 export default class Index extends PureComponent {
-  static state = {}
+  state = { modalVisible: false }
   componentDidMount() {
     this.props.dispatch({
       type: 'home/homeInfoFetch',
     });
+    this.props.dispatch({
+      type: 'global/creditList',
+    });
   }
+
+  setModalVisible(modalVisible) {
+    this.setState({ modalVisible });
+  }
+
   render() {
-    const { global: { isMobile }, home: { list = null }, loading } = this.props;
+    const { global: { creditListData = null }, home: { list = null }, loading } = this.props;
+    const { modalVisible } = this.state;
     const antIcon = <Icon type="loading" spin />;
     if (list) {
-      const { swiperImageList, noticeList, creditData, bidList, noticeData } = list;
-      console.log(list);
+      const { swiperImageList, noticeList, bidList, noticeData } = list;
       // Carousel api: https://github.com/akiran/react-slick
       const settings = {
         autoplay: true,
@@ -51,7 +59,7 @@ export default class Index extends PureComponent {
               swiperImageList.map(item => (
                 <div key={item.Id}>
                   <Link to={item.Url}>
-                    <img src={isMobile ? item.image_Mobile : item.image_url} alt={item.Title} />
+                    <img src={item.image_url} srcSet={`${item.image_Mobile} 2x`} alt={item.Title} />
                   </Link>
                 </div>
               ))
@@ -65,7 +73,7 @@ export default class Index extends PureComponent {
           <div className={styles.header}>
             <div className={styles.title}>
               <font>系统公告</font>
-              <span className={styles.more} style={{ cursor: 'pointer' }}>
+              <span className={styles.more} style={{ cursor: 'pointer' }} onClick={() => this.setModalVisible(true)}>
                 <Icon type="notification" /> {notice.Title}
               </span>
             </div>
@@ -76,10 +84,18 @@ export default class Index extends PureComponent {
         ...(list ? list.noticeData.publicity :
           { AllGodNum: '329090', EarnInterest: '100000', OperatingDays: '1000', TransactionAmount: '1898200000' }),
       };
+      // const {
+      //   AllGodNum = AllGodNum || '329090',
+      //   EarnInterest = EarnInterest || '100000',
+      //   OperatingDays = OperatingDays || '1055',
+      //   TransactionAmount = TransactionAmount || '1898200000',
+      // } = {
+      //   ...list.noticeData.publicity,
+      // };
       const ItemNotice = noticeList ? (
         <div className={styles.project}>
           <Card
-            title={ItemNoticeHeader(noticeData)}
+            title={ItemNoticeHeader(noticeData.notice)}
             loading={loading}
             extra={<a href="https://www.phonelee.com/Article/Index/1" className={styles.more}>更多公告 <Icon type="right" /></a>}
           >
@@ -112,53 +128,45 @@ export default class Index extends PureComponent {
         </div>
       ) : null;
 
-      const ItemBidHeader = (todo) => {
+      const ItemBidHeader = () => {
         return (
           <div className={styles.header}>
             <div className={styles.title}>
-              <h4>{todo.Name}</h4>
-              <span>{todo.Remark}</span>
+              <h4>汇理财</h4>
+              <span>省心最重要</span>
             </div>
-            <Link to={todo.moreLink || '/'} className={styles.more}>
+            <Link to="/" className={styles.more}>
               更多项目 <Icon type="right" />
             </Link>
           </div>
         );
       };
-      const ItemBidList = creditData ? (
-        <div>
-          {
-            creditData.map((todo) => {
-              return (
-                <div key={todo.Id} className={styles.project}>
-                  <List
-                    rowKey="id"
-                    loading={loading}
-                    split={false}
-                    header={ItemBidHeader(todo)}
-                    grid={{ gutter: 24, xl: 4, lg: 2, md: 2, sm: 2, xs: 1 }}
-                    dataSource={todo}
-                    renderItem={item => (
-                      <List.Item>
-                        <ItemBid
-                          links={item.links}
-                          cover={item.cover}
-                          title={item.Name}
-                          description={item.description}
-                          percent={item.percent}
-                          date={item.date}
-                          annual={item.annual}
-                          month={item.month}
-                          num1={item.num1}
-                          num2={item.num2}
-                        />
-                      </List.Item>
-                    )}
-                  />
-                </div>
-              );
-            })
-          }
+      const ItemBidList = creditListData ? (
+        <div className={styles.project}>
+          <List
+            rowKey="id"
+            loading={loading}
+            split={false}
+            header={ItemBidHeader()}
+            grid={{ gutter: 24, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }}
+            dataSource={creditListData}
+            renderItem={item => (
+              <List.Item>
+                <ItemBid
+                  links={item.links}
+                  cover={item.cover}
+                  title={item.Name}
+                  description={item.Remark}
+                  percent={item.percent}
+                  date={item.BidEndTime}
+                  annual={item.GainsRate}
+                  month={item.Deadline}
+                  num1={item.num1}
+                  amount={item.Amount}
+                />
+              </List.Item>
+            )}
+          />
         </div>
       ) : null;
 
@@ -226,6 +234,19 @@ export default class Index extends PureComponent {
           {ItemBidList}
           {ItemBidColumnsList}
           {/* {alreadyList} */}
+          <Modal
+            title={noticeData.notice.Title}
+            wrapClassName="vertical-center-modal"
+            visible={modalVisible}
+            onOk={() => this.setModalVisible(false)}
+            onCancel={() => this.setModalVisible(false)}
+          >
+            <p>{noticeData.notice.Contents}</p>
+            <p>{noticeData.notice.UpdateTime}</p>
+          </Modal>
+          <BackTop>
+            <Button type="primary" shape="circle" icon="up" size="large" />
+          </BackTop>
         </div>
       );
     } else {

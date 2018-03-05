@@ -7,7 +7,7 @@ export async function homeData(params) {
     body: params || {},
   });
 }
-export async function creditListData(params) {
+export async function creditListFetch(params) {
   return request('/api/v1/credits/post/query_credit_list', {
     method: 'POST',
     body: params || {},

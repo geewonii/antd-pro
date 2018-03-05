@@ -1,4 +1,4 @@
-import { queryNotices, globalFooterFunc } from '../services/api';
+import { queryNotices, globalFooterFunc, creditListFetch } from '../services/api';
 import Packet from '../utils/Packet';
 
 export default {
@@ -44,6 +44,24 @@ export default {
         payload: res,
       });
     },
+    *creditList(_, { put, call }) {
+      const send = new Packet();
+      const res = yield call(creditListFetch, send);
+      const recv = new Packet();
+      recv.ReadFrom(res);
+      const data = recv.DatasetToObjectList(0);
+      const creditListData = [];
+      [...data].forEach((todo) => {
+        const { CreditMode, ...rest } = todo;
+        if (CreditMode === '5') {
+          creditListData.push({ ...rest });
+        }
+      });
+      yield put({
+        type: 'credit',
+        payload: creditListData,
+      });
+    },
   },
 
   reducers: {
@@ -76,6 +94,13 @@ export default {
       return {
         ...state,
         globalFooterData: payload,
+
+      };
+    },
+    credit(state, { payload }) {
+      return {
+        ...state,
+        creditListData: payload,
 
       };
     },

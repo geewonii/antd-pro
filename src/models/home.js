@@ -1,4 +1,4 @@
-import { homeStaticData, homeData, creditListData } from '../services/api';
+import { homeStaticData, homeData } from '../services/api';
 import Packet from '../utils/Packet';
 
 export default {
@@ -33,17 +33,11 @@ export default {
         publicity: recv.DatasetToObjectList(3)[0] || null,
       };
 
-      const res1 = yield call(creditListData, new Packet());
-      const recv1 = new Packet();
-      recv1.ReadFrom(res1);
-      const creditData = recv1.DatasetToObjectList(0) || null;
-
       // export data
       const getHomeData = {
         ...staticData,
         swiperImageList,
         noticeData,
-        creditData,
       };
 
       yield put({

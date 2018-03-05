@@ -6,7 +6,7 @@ import monent from 'moment';
 import styles from './index.less';
 
 export default function ItemBid({
-  className, links, cover, title, description, annual, month, num1, num2, date, ...bidProps
+  className, links, cover, title, description, annual, month, num1, amount, date, ...bidProps
 }) {
   const clsString = classNames(className);
 
@@ -24,10 +24,10 @@ export default function ItemBid({
     </div>
   ) : description;
 
-  const molecular = num1 ? parseFloat(num1).toFixed(2) : 0;
-  const denominator = num2 ? parseFloat(num2).toFixed(2) : num1;
+  const molecular = num1 ? parseFloat(num1) : 0;
+  const denominator = amount ? parseFloat(amount) : num1;
   const percent = ((molecular / denominator) * 100).toFixed(1);
-  const percentDom = (num1 / num2) !== '100.0' ? (
+  const percentDom = (num1 / amount) !== '100.0' ? (
     <div className={styles.progress}>
       <div>{molecular}万 / {denominator}万</div>
       <span>{monent(date).fromNow() || monent().fromNow()}</span>
@@ -51,11 +51,11 @@ export default function ItemBid({
           {percentDom}
           <div className={styles.cardBottom}>
             <div className={styles.cardChild}>
-              <div>{annual || 0}%</div>
+              <div>{parseFloat(annual) || 0}%</div>
               <span>约定利率(年化)</span>
             </div>
             <div className={styles.cardChild}>
-              <div>{month || 24}</div>
+              <div>{parseInt(month, 10) || 24}</div>
               <span>投资期限(月)</span>
             </div>
           </div>

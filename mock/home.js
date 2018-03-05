@@ -56,7 +56,7 @@ const getHomeData = [
       }],
     },
     ItemBidList: [{
-      parentId: '1',
+      CreditMode: '5',
       title: '汇理财 ',
       subhead: '省心最重要 ——懒人式理财 智能投标 安全安心',
       moreLink: '/',
