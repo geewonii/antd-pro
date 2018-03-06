@@ -2,6 +2,8 @@ import { routerRedux } from 'dva/router';
 import { fakeAccountLogin } from '../services/api';
 import { setAuthority } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
+// import { Packet } from '../utils/Packet';
+// import { getAESEncrypt } from '../utils/tool';
 
 export default {
   namespace: 'login',
@@ -12,6 +14,13 @@ export default {
 
   effects: {
     *login({ payload }, { call, put }) {
+      // const mobile = getAESEncrypt(payload.mobile.trim());
+      // const password = getAESEncrypt(payload.password.trim());
+      // const send = new Packet();
+      // send.AddDataset();
+      // send.AddItem(0, 'aliases', mobile);
+      // send.AddItem(0, 'password', password);
+      // const response = yield call(accountLogin, send);
       const response = yield call(fakeAccountLogin, payload);
       yield put({
         type: 'changeLoginStatus',

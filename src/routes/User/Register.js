@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { routerRedux, Link } from 'dva/router';
-import { Form, Input, Button, Select, Row, Col, Popover, Progress } from 'antd';
+import { Form, Input, Button, Row, Col, Popover, Progress, Checkbox } from 'antd';
 import styles from './Register.less';
 
 const FormItem = Form.Item;
-const { Option } = Select;
+// const { Option } = Select;
 const InputGroup = Input.Group;
 
 const passwordStatusMap = {
   ok: <div className={styles.success}>强度：强</div>,
   pass: <div className={styles.warning}>强度：中</div>,
-  poor: <div className={styles.error}>强度：太短</div>,
+  poor: <div className={styles.error}>强度：弱</div>,
 };
 
 const passwordProgressMap = {
@@ -25,13 +25,12 @@ const passwordProgressMap = {
   submitting: loading.effects['register/submit'],
 }))
 @Form.create()
-export default class Register extends Component {
+export default class Register extends PureComponent {
   state = {
     count: 0,
     confirmDirty: false,
     visible: false,
     help: '',
-    prefix: '86',
   };
 
   componentWillReceiveProps(nextProps) {
@@ -82,7 +81,6 @@ export default class Register extends Component {
           type: 'register/submit',
           payload: {
             ...values,
-            prefix: this.state.prefix,
           },
         });
       }
@@ -131,12 +129,6 @@ export default class Register extends Component {
     }
   };
 
-  changePrefix = (value) => {
-    this.setState({
-      prefix: value,
-    });
-  };
-
   renderPasswordProgress = () => {
     const { form } = this.props;
     const value = form.getFieldValue('password');
@@ -157,79 +149,13 @@ export default class Register extends Component {
   render() {
     const { form, submitting } = this.props;
     const { getFieldDecorator } = form;
-    const { count, prefix } = this.state;
+    const { count } = this.state;
     return (
       <div className={styles.main}>
-        <h3>注册</h3>
+        <h3 style={{ textAlign: 'center' }}>注册账号</h3>
         <Form onSubmit={this.handleSubmit}>
           <FormItem>
-            {getFieldDecorator('mail', {
-              rules: [
-                {
-                  required: true,
-                  message: '请输入邮箱地址！',
-                },
-                {
-                  type: 'email',
-                  message: '邮箱地址格式错误！',
-                },
-              ],
-            })(<Input size="large" placeholder="邮箱" />)}
-          </FormItem>
-          <FormItem help={this.state.help}>
-            <Popover
-              content={
-                <div style={{ padding: '4px 0' }}>
-                  {passwordStatusMap[this.getPasswordStatus()]}
-                  {this.renderPasswordProgress()}
-                  <div style={{ marginTop: 10 }}>
-                    请至少输入 6 个字符。请不要使用容易被猜到的密码。
-                  </div>
-                </div>
-              }
-              overlayStyle={{ width: 240 }}
-              placement="right"
-              visible={this.state.visible}
-            >
-              {getFieldDecorator('password', {
-                rules: [
-                  {
-                    validator: this.checkPassword,
-                  },
-                ],
-              })(
-                <Input
-                  size="large"
-                  type="password"
-                  placeholder="至少6位密码，区分大小写"
-                />
-              )}
-            </Popover>
-          </FormItem>
-          <FormItem>
-            {getFieldDecorator('confirm', {
-              rules: [
-                {
-                  required: true,
-                  message: '请确认密码！',
-                },
-                {
-                  validator: this.checkConfirm,
-                },
-              ],
-            })(<Input size="large" type="password" placeholder="确认密码" />)}
-          </FormItem>
-          <FormItem>
             <InputGroup compact>
-              <Select
-                size="large"
-                value={prefix}
-                onChange={this.changePrefix}
-                style={{ width: '20%' }}
-              >
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
-              </Select>
               {getFieldDecorator('mobile', {
                 rules: [
                   {
@@ -244,8 +170,7 @@ export default class Register extends Component {
               })(
                 <Input
                   size="large"
-                  style={{ width: '80%' }}
-                  placeholder="11位手机号"
+                  placeholder="请输入手机号码"
                 />
               )}
             </InputGroup>
@@ -274,6 +199,83 @@ export default class Register extends Component {
               </Col>
             </Row>
           </FormItem>
+          <FormItem help={this.state.help}>
+            <Popover
+              content={
+                <div style={{ padding: '4px 0' }}>
+                  {passwordStatusMap[this.getPasswordStatus()]}
+                  {this.renderPasswordProgress()}
+                  <div style={{ marginTop: 10 }}>
+                    请至少输入 6 个字符。请不要使用容易被猜到的密码。
+                  </div>
+                </div>
+              }
+              overlayStyle={{ width: 240 }}
+              placement="right"
+              visible={this.state.visible}
+            >
+              {getFieldDecorator('password', {
+                rules: [
+                  {
+                    validator: this.checkPassword,
+                  },
+                ],
+              })(
+                <Input
+                  size="large"
+                  type="password"
+                  placeholder="请输入密码，区分大小写"
+                />
+              )}
+            </Popover>
+          </FormItem>
+          <FormItem>
+            {getFieldDecorator('confirm', {
+              rules: [
+                {
+                  required: true,
+                  message: '请确认密码！',
+                },
+                {
+                  validator: this.checkConfirm,
+                },
+              ],
+            })(<Input size="large" type="password" placeholder="确认密码" />)}
+          </FormItem>
+
+          <FormItem>
+            <InputGroup compact>
+              {getFieldDecorator('lala', {
+                rules: [
+                  {
+                    required: true,
+                    message: '请输入您的真实姓名!',
+                  },
+                ],
+              })(
+                <Input
+                  size="large"
+                  placeholder="请输入真实姓名"
+                />
+              )}
+            </InputGroup>
+          </FormItem>
+          <FormItem>
+            <InputGroup compact>
+              {getFieldDecorator('lalala')(
+                <Input
+                  size="large"
+                  placeholder="输入推荐人真实姓名或手机号 (非必填)"
+                />
+              )}
+            </InputGroup>
+          </FormItem>
+          <div style={{ marginBottom: '20px' }}>
+            <Checkbox checked={this.state.autoLogin} onChange={this.changeAutoLogin}>
+            我已阅读并同意丰利金服的 <a href="https://www.phonelee.com/Contract/ServiceAgreement">服务条款</a>
+            </Checkbox>
+          </div>
+
           <FormItem>
             <Button
               size="large"
@@ -282,7 +284,7 @@ export default class Register extends Component {
               type="primary"
               htmlType="submit"
             >
-              注册
+              立即注册
             </Button>
             <Link className={styles.login} to="/user/login">
               使用已有账户登录

@@ -23,6 +23,13 @@ export async function globalFooterFunc() {
   return request('https://api.phonelee.com/static/phonelee_footer.json');
 }
 
+export async function accountLogin(params) {
+  return request('/api/v1/users/post/login', {
+    method: 'POST',
+    body: params || {},
+  });
+}
+
 export async function creditData(params) {
   return request(`/api/credit?${stringify(params)}`);
 }
