@@ -18,6 +18,7 @@ export interface LoginItemProps {
   rules?: any[];
   style?: React.CSSProperties;
   onGetCaptcha?: () => void;
+  onGetImgCaptcha?: () => void;
 }
 
 export class LoginItem extends React.Component<LoginItemProps, any> {}
@@ -28,5 +29,6 @@ export default class Login extends React.Component<LoginProps, any> {
   static Password: typeof LoginItem;
   static Mobile: typeof LoginItem;
   static Captcha: typeof LoginItem;
+  static ImgCaptcha: typeof LoginItem;
   static Submit: typeof Button;
 }

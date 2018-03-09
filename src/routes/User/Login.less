@@ -1,9 +1,9 @@
 @import "~antd/lib/style/themes/default.less";
 
 .main {
-  width: 368px;
+  width: 100%;
   margin: 0 auto;
-
+  overflow: hidden;
   .icon {
     font-size: 24px;
     color: rgba(0, 0, 0, 0.2);
@@ -25,5 +25,12 @@
     .register {
       float: right;
     }
+  }
+}
+
+
+@media (min-width: @screen-md-min) {
+  .main {
+    width: 350px;
   }
 }

@@ -1,11 +1,12 @@
 import { query as queryUsers, queryCurrent } from '../services/user';
+import Packet from '../utils/Packet';
 
 export default {
   namespace: 'user',
 
   state: {
     list: [],
-    currentUser: {},
+    currentUser: null,
   },
 
   effects: {
@@ -17,11 +18,17 @@ export default {
       });
     },
     *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
-      yield put({
-        type: 'saveCurrentUser',
-        payload: response,
-      });
+      const send = new Packet();
+      const response = yield call(queryCurrent, send);
+      const recv = new Packet();
+      recv.ReadFrom(response);
+      if (recv.Code === 1) {
+        const data = recv.DatasetToObjectList(0)[0];
+        yield put({
+          type: 'saveCurrentUser',
+          payload: data,
+        });
+      }
     },
   },
 

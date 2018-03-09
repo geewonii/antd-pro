@@ -45,7 +45,7 @@ const getCreditData = [
         title: '预期年化收益',
       },
     ],
-    countdown: new Date().getTime() + 10000000,
+    countdown: new Date().getTime() + 20000000,
     residue: '635000',
   },
 ];

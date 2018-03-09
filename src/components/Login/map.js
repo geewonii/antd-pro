@@ -8,7 +8,7 @@ const map = {
     props: {
       size: 'large',
       prefix: <Icon type="user" className={styles.prefixIcon} />,
-      placeholder: 'admin',
+      placeholder: '请输入账户名',
     },
     rules: [{
       required: true, message: '请输入账户名！',
@@ -48,6 +48,17 @@ const map = {
     },
     rules: [{
       required: true, message: '请输入验证码！',
+    }],
+  },
+  ImgCaptcha: {
+    component: Input,
+    props: {
+      size: 'large',
+      prefix: <Icon type="mail" className={styles.prefixIcon} />,
+      placeholder: '请输入验证码',
+    },
+    rules: [{
+      required: true, message: '请输入图片中的验证码！',
     }],
   },
 };

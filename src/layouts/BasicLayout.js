@@ -89,7 +89,6 @@ class BasicLayout extends PureComponent {
     this.props.dispatch({
       type: 'user/fetchCurrent',
     });
-    // 此处传参数 ‘isMobile’和globalFooter需要的数据
     this.props.dispatch({
       type: 'global/globalFooterData',
       payload: {
@@ -152,6 +151,7 @@ class BasicLayout extends PureComponent {
       });
     }
   }
+
   render() {
     const {
       currentUser, collapsed, fetchingNotices, notices,

@@ -35,10 +35,12 @@ export default {
     *globalFooterData({ payload }, { put, call }) {
       const send = new Packet();
       const res = yield call(globalFooterFunc, send);
-      yield put({
-        type: 'screenIsMobile',
-        payload: payload.isMobile,
-      });
+      if (payload) {
+        yield put({
+          type: 'screenIsMobile',
+          payload: payload.isMobile,
+        });
+      }
       yield put({
         type: 'globalFooter',
         payload: res,

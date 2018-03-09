@@ -14,20 +14,12 @@ export async function creditListFetch(params) {
   });
 }
 
-
 export async function homeStaticData() {
   return request('https://api.phonelee.com/static/phonelee_home.json');
 }
 
 export async function globalFooterFunc() {
   return request('https://api.phonelee.com/static/phonelee_footer.json');
-}
-
-export async function accountLogin(params) {
-  return request('/api/v1/users/post/login', {
-    method: 'POST',
-    body: params || {},
-  });
 }
 
 export async function creditData(params) {

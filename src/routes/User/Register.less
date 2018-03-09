@@ -1,9 +1,9 @@
 @import "~antd/lib/style/themes/default.less";
 
 .main {
-  width: 368px;
+  width: 100%;
   margin: 0 auto;
-
+  overflow: hidden;
   :global {
     .ant-form-item {
       margin-bottom: 24px;
@@ -53,5 +53,11 @@
     .ant-progress-bg {
       background-color: @warning-color;
     }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .main {
+    width: 350px;
   }
 }

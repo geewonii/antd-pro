@@ -1,6 +1,6 @@
-// import Packet from './Packet';
+import forge from 'node-forge';
 
-const forge = require('node-forge');
+// const forge = require('node-forge');
 
 // ISO 8601 转化固定格式时间
 export function dateChangeStandard(str) {

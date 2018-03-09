@@ -1,39 +1,68 @@
 import { routerRedux } from 'dva/router';
-import { fakeAccountLogin } from '../services/api';
+import { onGetPhoneCaptcha, accountLogin, accountLogout } from '../services/user';
 import { setAuthority } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
-// import { Packet } from '../utils/Packet';
-// import { getAESEncrypt } from '../utils/tool';
+import Packet from '../utils/Packet';
 
 export default {
   namespace: 'login',
 
   state: {
     status: undefined,
+    phoneCaptchaState: undefined,
   },
 
   effects: {
-    *login({ payload }, { call, put }) {
-      // const mobile = getAESEncrypt(payload.mobile.trim());
-      // const password = getAESEncrypt(payload.password.trim());
-      // const send = new Packet();
-      // send.AddDataset();
-      // send.AddItem(0, 'aliases', mobile);
-      // send.AddItem(0, 'password', password);
-      // const response = yield call(accountLogin, send);
-      const response = yield call(fakeAccountLogin, payload);
+    *getPhoneCaptcha({ payload }, { call, put }) {
+      const send = new Packet();
+      send.AddDataset();
+      send.AddItem(0, 'mobile', payload.mobile);
+      const res = yield call(onGetPhoneCaptcha, send);
+      const recv = new Packet();
+      recv.ReadFrom(res);
+      const { Code, Message } = recv;
+      const phoneCaptchaState = { Code, Message };
       yield put({
-        type: 'changeLoginStatus',
-        payload: response,
+        type: 'captchaHandle',
+        payload: phoneCaptchaState,
       });
-      // Login successfully
-      if (response.status === 'ok') {
+    },
+    *login({ payload }, { call, put }) {
+      const send = new Packet();
+      send.AddDataset();
+      if (payload.type === 'account') {
+        send.AddItem(0, 'mobile', payload.mobile);
+        send.AddItem(0, 'password', payload.password);
+        send.AddItem(0, 'captcha_id', payload.captchaId);
+        send.AddItem(0, 'image_code', payload.image_code);
+      } else {
+        send.AddItem(0, 'mobile', payload.mobile);
+        send.AddItem(0, 'sms_code', payload.sms_code);
+      }
+      const response = yield call(accountLogin, send);
+      const recv = new Packet();
+      recv.ReadFrom(response);
+      if (recv.Code === 1) {
+        if (payload.autoLogin) {
+          localStorage.setItem('ph-mobile', payload.mobile);
+        }
+        // Login successfully
         reloadAuthorized();
         yield put(routerRedux.push('/'));
+        yield put({
+          type: 'okLoginStatus',
+          payload: recv,
+        });
+      } else {
+        yield put({
+          type: 'errorLoginStatus',
+          payload: recv,
+        });
       }
     },
-    *logout(_, { put, select }) {
+    *logout(_, { put, select, call }) {
       try {
+        yield call(accountLogout);
         // get location pathname
         const urlParams = new URL(window.location.href);
         const pathname = yield select(state => state.routing.location.pathname);
@@ -55,12 +84,29 @@ export default {
   },
 
   reducers: {
-    changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+    changeCaptcha(state, { payload }) {
       return {
         ...state,
-        status: payload.status,
-        type: payload.type,
+        captchaUrl: payload,
+      };
+    },
+    captchaHandle(state, { payload }) {
+      return {
+        ...state,
+        phoneCaptchaState: payload,
+      };
+    },
+    okLoginStatus(state, { payload }) {
+      setAuthority('user');
+      return {
+        ...state,
+        status: payload,
+      };
+    },
+    errorLoginStatus(state, { payload }) {
+      return {
+        ...state,
+        status: payload,
       };
     },
   },

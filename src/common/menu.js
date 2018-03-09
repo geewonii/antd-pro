@@ -123,9 +123,10 @@ const menuData = [{
   path: 'http://pro.ant.design/docs/getting-started',
   target: '_blank',
 }, {
-  name: '客服帮助',
+  name: '帮助中心',
   icon: 'frown-o',
-  path: 'help',
+  path: 'https://www.phonelee.com/Article/Index/1',
+  target: '_blank',
 }];
 
 function formatter(data, parentPath = '/', parentAuthority) {
