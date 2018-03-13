@@ -38,7 +38,7 @@ export default class Register extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const account = this.props.form.getFieldValue('mobile');
-    if (nextProps.register.guid) {
+    if (nextProps.register.loginStatus) {
       this.props.dispatch(routerRedux.push({
         pathname: '/user/register-result',
         state: {

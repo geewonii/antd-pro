@@ -1,4 +1,4 @@
-import { message } from 'antd';
+// import { message } from 'antd';
 import { onGetRegisterCaptcha, register } from '../services/user';
 import { setAuthority } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
@@ -35,15 +35,10 @@ export default {
       const response = yield call(register, send);
       const recv = new Packet();
       recv.ReadFrom(response);
-      if (recv.Code === 0) {
-        message.error(recv.Message);
-      } else {
-        const guid = recv.DatasetToObjectList(0);
-        yield put({
-          type: 'registerHandle',
-          payload: guid,
-        });
-      }
+      yield put({
+        type: 'registerHandle',
+        payload: recv.Code,
+      });
     },
   },
 
@@ -59,7 +54,7 @@ export default {
       reloadAuthorized();
       return {
         ...state,
-        guid: payload,
+        loginStatus: payload,
       };
     },
   },

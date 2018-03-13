@@ -10,6 +10,7 @@ export default {
   state: {
     status: undefined,
     phoneCaptchaState: undefined,
+    message: undefined,
   },
 
   effects: {
@@ -42,22 +43,28 @@ export default {
       const response = yield call(accountLogin, send);
       const recv = new Packet();
       recv.ReadFrom(response);
-      if (recv.Code === 1) {
-        if (payload.autoLogin) {
-          localStorage.setItem('ph-mobile', payload.mobile);
-        }
+      if (recv.Code === 0) {
+        yield put({
+          type: 'changeLoginStatus',
+          payload: {
+            status: recv.Code,
+            // currentAuthority: 'guest',
+            message: recv.Message,
+          },
+        });
+      } else {
+        if (payload.autoLogin) localStorage.setItem('ph-mobile', payload.mobile);
+        yield put({
+          type: 'changeLoginStatus',
+          payload: {
+            status: 'ok',
+            currentAuthority: 'user',
+            message: recv.Message,
+          },
+        });
         // Login successfully
         reloadAuthorized();
         yield put(routerRedux.push('/'));
-        yield put({
-          type: 'okLoginStatus',
-          payload: recv,
-        });
-      } else {
-        yield put({
-          type: 'errorLoginStatus',
-          payload: recv,
-        });
       }
     },
     *logout(_, { put, select, call }) {
@@ -96,17 +103,13 @@ export default {
         phoneCaptchaState: payload,
       };
     },
-    okLoginStatus(state, { payload }) {
-      setAuthority('user');
+    changeLoginStatus(state, { payload }) {
+      setAuthority(payload.currentAuthority);
       return {
         ...state,
-        status: payload,
-      };
-    },
-    errorLoginStatus(state, { payload }) {
-      return {
-        ...state,
-        status: payload,
+        status: payload.status,
+        type: payload.type,
+        message: payload.message,
       };
     },
   },

@@ -75,7 +75,7 @@ export default class LoginPage extends PureComponent {
   }
 
   render() {
-    const { login: { phoneCaptchaState = null, status = null }, submitting } = this.props;
+    const { login: { phoneCaptchaState, status, message }, submitting } = this.props;
     const { type } = this.state;
     return (
       <div className={styles.main}>
@@ -86,9 +86,7 @@ export default class LoginPage extends PureComponent {
         >
           <Tab key="account" tab="账户密码登录">
             {
-              !!status &&
-              status.Code === 0 &&
-              this.renderMessage(status.Message)
+              status === 0 && this.renderMessage(message)
             }
             <UserName name="userName" placeholder="请输入手机号" />
             <Password name="password" placeholder="请输入密码" />

@@ -7,7 +7,6 @@ import { numberFormat } from '../../utils/utils';
 import ItemBid from '../../components/ItemBid';
 import ItemBidColumns from '../../components/ItemBidColumns';
 import styles from './index.less';
-import { getAuthority } from '../../utils/authority';
 
 @connect(({ global, home, loading }) => ({
   global,
@@ -33,7 +32,6 @@ export default class Index extends PureComponent {
     const { global: { creditListData = null }, home: { list = null }, loading } = this.props;
     const { modalVisible } = this.state;
     const antIcon = <Icon type="loading" spin />;
-    console.log(getAuthority());
     if (list) {
       const { swiperImageList, noticeList, bidList, noticeData } = list;
       // Carousel api: https://github.com/akiran/react-slick
