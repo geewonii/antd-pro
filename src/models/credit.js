@@ -4,15 +4,15 @@ export default {
   namespace: 'credit',
 
   state: {
-    list: [],
+    list: undefined,
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
-      const data = yield call(creditData, payload);
+      const res = yield call(creditData, payload);
       yield put({
         type: 'creditList',
-        payload: data,
+        payload: res,
       });
     },
   },

@@ -36,7 +36,7 @@ export default function ItemBid({
 
   return (
     <div className={clsString} {...bidProps}>
-      <Link to={links || '/'}>
+      <Link to={links || '/credit'}>
         <Card
           className={styles.card}
           hoverable

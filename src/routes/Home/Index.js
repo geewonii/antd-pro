@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
+import numeral from 'numeral';
 import { Button, Carousel, List, Icon, Card, Avatar, Row, Col, Spin, BackTop, Modal } from 'antd';
-import { numberFormat } from '../../utils/utils';
 // import { WaterWave } from '../../components/Charts';
 import ItemBid from '../../components/ItemBid';
 import ItemBidColumns from '../../components/ItemBidColumns';
@@ -84,14 +84,6 @@ export default class Index extends PureComponent {
         ...(list ? list.noticeData.publicity :
           { AllGodNum: '329090', EarnInterest: '100000', OperatingDays: '1000', TransactionAmount: '1898200000' }),
       };
-      // const {
-      //   AllGodNum = AllGodNum || '329090',
-      //   EarnInterest = EarnInterest || '100000',
-      //   OperatingDays = OperatingDays || '1055',
-      //   TransactionAmount = TransactionAmount || '1898200000',
-      // } = {
-      //   ...list.noticeData.publicity,
-      // };
       const ItemNotice = noticeList ? (
         <div className={styles.project}>
           <Card
@@ -104,7 +96,7 @@ export default class Index extends PureComponent {
               dataSource={noticeList}
               renderItem={item => (
                 <List.Item>
-                  <Link to="/credit">
+                  <Link to="/">
                     <List.Item.Meta
                       avatar={<Avatar shape="square" size="large" style={{ backgroundColor: '#fff', width: '48px', height: '48px' }} src={item.href} />}
                       title={item.title}
@@ -121,8 +113,8 @@ export default class Index extends PureComponent {
                 <span> {Math.floor(OperatingDays % 365 % 31)}</span> 天
               </Col>
               <Col xs={0} sm={12} md={12} lg={6} >累计注册人数 <span> {AllGodNum}</span> 人</Col>
-              <Col xs={0} sm={12} md={12} lg={6} >为投资人赚取 <span> {`${numberFormat(EarnInterest, 2, '.', ',')}`}</span> 元</Col>
-              <Col xs={0} sm={12} md={12} lg={6} >累计交易金额 <span> {`${numberFormat(TransactionAmount, 2, '.', ',')}`}</span> 元</Col>
+              <Col xs={0} sm={12} md={12} lg={6} >为投资人赚取 <span> {`${numeral(EarnInterest).format('0,0')}`}</span> 元</Col>
+              <Col xs={0} sm={12} md={12} lg={6} >累计交易金额 <span> {`${numeral(TransactionAmount).format('0,0')}`}</span> 元</Col>
             </Row>
           </Card>
         </div>
