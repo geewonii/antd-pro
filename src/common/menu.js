@@ -5,6 +5,10 @@ const menuData = [{
   icon: 'home',
   path: 'home/index',
 }, {
+  name: ' 我的丰利',
+  icon: 'user',
+  path: 'home/user',
+}, {
   name: 'dashboard',
   icon: 'dashboard',
   path: 'dashboard',

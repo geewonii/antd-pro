@@ -1,0 +1,45 @@
+@import "~antd/lib/style/themes/default.less";
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 24px;
+  span {
+    color: @primary-color;
+  }
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  input {
+    margin-bottom: 24px;
+  }
+  button {
+    width: 100%;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .title {
+    font-size: 36px;
+  }
+
+  .search {
+    flex-direction: row;
+    margin: 24px;
+    input {
+      width: 45%;
+      border-radius: 4px 0 0 4px;
+      border-right: none;
+      margin-bottom: 0;
+    }
+    button {
+      width: auto;
+      border-radius: 0 4px 4px 0;
+    }
+  }
+}

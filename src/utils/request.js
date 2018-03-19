@@ -73,19 +73,8 @@ export default function request(url, options) {
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text();
       }
-      // return response.text();
       return response.json();
     })
-    // .then((responseText) => {
-    //   const recv = new Packet();
-    //   recv.ReadFrom(JSON.parse(responseText));
-    //   if (parseInt(recv.Code, 10) === 0) {
-    //     const error = new Error();
-    //     error.res = recv.Message;
-    //     throw error;
-    //   }
-    //   return recv;
-    // })
     .catch((e) => {
       const { dispatch } = store;
       const status = e.name;

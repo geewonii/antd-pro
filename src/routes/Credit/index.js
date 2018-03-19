@@ -130,8 +130,11 @@ export default class Index extends PureComponent {
                 >
                   {getFieldDecorator('jine', {
                     rules: [{
-                      required: true, message: '请输入投标金额',
-                    }],
+                      required: true,
+                      message: '请输入正确的投标金额',
+                      pattern: /^\d+$/,
+                    },
+                  ],
                   })(
                     <Input size="large" placeholder="起投金额1000元" />
                   )}
@@ -249,7 +252,7 @@ export default class Index extends PureComponent {
       <div className={styles.credit}>
         <div className={styles.nav}>
           <img src={list ? list.nav.navUrl : 'https://www.phonelee.com/Credit/NewCunQian/4219'} alt={list ? list.title : ''} />
-          <div>投资有风险，理财需谨慎，点击查看 <Link to={list ? list.nav.links : 'https://www.phonelee.com/Credit/PastHuiLiCaiList'}>过往产品</Link></div>
+          <div>投资有风险，理财需谨慎，点击查看 <Link to={list ? list.nav.links : '/previous'}>过往产品</Link></div>
         </div>
         <div className={styles.content}>
           {content}

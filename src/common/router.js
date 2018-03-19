@@ -79,6 +79,28 @@ export const getRouterData = (app) => {
     '/credit': {
       component: dynamicWrapper(app, ['credit'], () => import('../routes/Credit')),
     },
+    '/previous': {
+      component: dynamicWrapper(app, ['previous'], () => import('../routes/Previous')),
+    },
+    '/user': {
+      component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
+    },
+    '/user/login': {
+      component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
+    },
+    '/user/register': {
+      component: dynamicWrapper(app, ['register'], () => import('../routes/User/Register')),
+    },
+    '/user/register-result': {
+      component: dynamicWrapper(app, [], () => import('../routes/User/RegisterResult')),
+    },
+    // '/user/:id': {
+    //   component: dynamicWrapper(app, [], () => import('../routes/User/SomeComponent')),
+    // },
+    '/home/user': {
+      component: dynamicWrapper(app, [], () => import('../routes/Dashboard/Analysis')),
+      authority: 'user',
+    },
     '/dashboard/analysis': {
       component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),
     },
@@ -154,21 +176,6 @@ export const getRouterData = (app) => {
     '/exception/trigger': {
       component: dynamicWrapper(app, ['error'], () => import('../routes/Exception/triggerException')),
     },
-    '/user': {
-      component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
-    },
-    '/user/login': {
-      component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
-    },
-    '/user/register': {
-      component: dynamicWrapper(app, ['register'], () => import('../routes/User/Register')),
-    },
-    '/user/register-result': {
-      component: dynamicWrapper(app, [], () => import('../routes/User/RegisterResult')),
-    },
-    // '/user/:id': {
-    //   component: dynamicWrapper(app, [], () => import('../routes/User/SomeComponent')),
-    // },
   };
   // Get name from ./menu.js or just set it in the router data.
   const menuData = getFlatMenuData(getMenuData());

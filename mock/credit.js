@@ -3,7 +3,7 @@
 const getCreditData = {
   nav: {
     navUrl: 'https://www.phonelee.com/Content/new/newimages/security.jpg',
-    links: '/credit',
+    links: '/previous',
   },
   title: '汇理财-丰利财',
   business: '业务编号：WYC148-20171106',
