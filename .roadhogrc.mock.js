@@ -16,30 +16,6 @@ const noProxy = process.env.NO_PROXY === 'true';
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 const proxy = {
   // 支持值为 Object 和 Array
-  'POST /api/v1/users/post/login': (req, res) => {
-    const { password, userName, type } = req.body;
-    if(password === '888888' && userName === 'admin'){
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin'
-      });
-      return ;
-    }
-    if(password === '123456' && userName === 'user'){
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'user'
-      });
-      return ;
-    }
-    res.send({
-      status: 'error',
-      type,
-      currentAuthority: 'guest'
-    });
-  },
   'POST /api/v1/homes/post/query_home_info': getHomeData,
   'GET /api/globalFooterData': getGlobalFooterData,
   'GET /api/credit': getCredit,

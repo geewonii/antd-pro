@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
-import { Card, Row, Col, Progress, Input, Form, Button, Checkbox, List } from 'antd';
+import { Card, Row, Col, Progress, Input, Form, Button, Checkbox, List, Avatar } from 'antd';
 import numeral from 'numeral';
 import Ellipsis from '../../components/Ellipsis';
 import styles from './index.less';
@@ -98,7 +98,7 @@ export default class Index extends PureComponent {
     ) : null;
 
     const content = list ? (
-      <div>
+      <div className={styles.header}>
         <Row style={{ marginBottom: '24px' }}>
           <Col xl={17} lg={16} md={0} sm={0} xs={0} style={{ paddingRight: '20px' }}>
             <Card bodyStyle={{ padding: '0' }} loading={loading}>
@@ -240,12 +240,33 @@ export default class Index extends PureComponent {
         dataSource={list.two}
       />
     ) : null;
+    const five = list ? (
+      <List
+        size="small"
+        itemLayout="vertical"
+        dataSource={list.one}
+        renderItem={item => (
+          <List.Item>
+            <List.Item.Meta
+              title={item.title}
+              avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+              description={
+                <Ellipsis style={{ flex: 1 }} tooltip length={isMobile ? 80 : 250}>
+                  {item.description}
+                </Ellipsis>
+              }
+            />
+          </List.Item>
+        )}
+      />
+    ) : null;
+
     const contentListNoTitle = {
       one,
       two,
       three: two,
       four: one,
-      five: one,
+      five,
     };
 
     return (

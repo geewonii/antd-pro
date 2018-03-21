@@ -1,4 +1,4 @@
-import React, { createElement, PureComponent } from 'react';
+import React, { createElement, Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import classNames from 'classnames';
@@ -7,16 +7,18 @@ import config from './typeConfig';
 import styles from './index.less';
 
 @connect()
-export default class Exception extends PureComponent {
-  componentWillMount() {
-    const { type } = this.props;
+export default class Exception extends Component {
+  componentDidMount() {
+    // 暂时在这跳转，需修改
+    const { type, dispatch } = this.props;
     const pageType = type in config ? type : '404';
     if (pageType === '403') {
-      this.props.dispatch(routerRedux.push({
+      dispatch(routerRedux.push({
         pathname: '/user/login',
       }));
     }
   }
+
   render() {
     const { className, linkElement = 'a', type, title, desc, img, actions, dispatch, ...rest } = this.props;
     const pageType = type in config ? type : '404';
@@ -46,7 +48,6 @@ export default class Exception extends PureComponent {
     );
   }
 }
-
 
 // export default ({ className, linkElement = 'a', type, title, desc, img, actions, ...rest }) => {
 //   const pageType = type in config ? type : '404';

@@ -3,7 +3,7 @@ import 'url-polyfill';
 import dva from 'dva';
 
 import createHistory from 'history/createHashHistory';
-// user BrowserHistory
+// user BrowserHistory 同构就交给下一位了
 // import createHistory from 'history/createBrowserHistory';
 import createLoading from 'dva-loading';
 import 'moment/locale/zh-cn';

@@ -174,7 +174,6 @@ class BasicLayout extends PureComponent {
         />
         <HeaderMenu
           logo={logo}
-          // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
           Authorized={Authorized}
           menuData={getMenuData()}
           collapsed={collapsed}
@@ -214,13 +213,13 @@ class BasicLayout extends PureComponent {
         </Layout>
       </Layout>
     );
+    // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
+    // If you do not have the Authorized parameter
+    // you will be forced to jump to the 403 interface without permission
     const layoutMobile = (
       <Layout>
         <HeaderMenu
-          logo={logoMobile}
-          // 不带Authorized参数的情况下如果没有权限,会强制跳到403界面
-          // If you do not have the Authorized parameter
-          // you will be forced to jump to the 403 interface without permission
+          logo={logo}
           Authorized={Authorized}
           menuData={getMenuData()}
           collapsed={collapsed}
